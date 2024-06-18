@@ -1,0 +1,399 @@
+/* Constants Classes */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 120px;
+    width: 120px;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 7px;
+    border-color: var(--shadow-background) transparent transparent transparent;
+    border-radius: 50%;
+    z-index: 2;
+    margin-right: 5px;
+    animation-name: Loading;
+    transform-origin: center center;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.table-loading {
+    margin-top: 100px;
+}
+@keyframes Loading {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+.left-part::before {
+    content: "";
+    position: absolute;
+    background-color: #fc91b5;
+    width: 170px;
+    height: 116%;
+    top: -34px;
+    left: -124px;
+    transform: rotate(11deg);
+    z-index: -1;
+}
+.left-part::after {
+    content: "";
+    position: absolute;
+    background-color: #fc91b588;
+    width: 170px;
+    height: 116%;
+    top: -34px;
+    left: -70px;
+    transform: rotate(11deg);
+    z-index: -2;
+}
+.page-title {
+    position: relative;
+    margin-top: 10px;
+    top: 10px;
+    width: fit-content;
+    z-index: -5;
+}
+.page-title::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 80%;
+    height: 85%;
+    background-color: var(--shadow-background);
+    transform: translate(-50%, 0);
+    z-index: -1;
+    border-radius: 10px;
+}
+.page-content {
+    position: absolute;
+    width: calc(100% - 330px);
+    height: calc(100% - 90px);
+    background-color: white;
+    border-radius: 20px;
+    overflow-y: auto;
+    padding: 10px;
+    left: 15px;
+    bottom: 15px;
+}
+.heighlight-text {
+    background-color: #cbcbcb;
+    border-radius: 10px;
+    margin-top: -15px;
+    padding: 5px;
+}
+.heighlight-heading {
+    background-color: #009688;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-top: -15px;
+    padding: 10px 65px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0) !important;
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: inset 0 0 30px 10px white;
+    transition: 0.5s;
+    cursor: default;
+}
+.heighlight-heading:hover {
+    box-shadow: none;
+    color: white;
+}
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 12px;
+    right: 50%;
+    width: -moz-fit-content;
+    width: fit-content;
+    border: 12px solid white;
+    border-radius: 60px;
+}
+.search-bar input {
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: var(--main-background);
+    transition: 0.3s;
+    width: 300px;
+    height: 100%;
+    padding: 5px;
+    transition-property: width;
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-right: 5px solid white;
+}
+.search-bar input::placeholder {
+    transition: 0.3s;
+}
+.search-bar input:focus::placeholder {
+    color: transparent;
+}
+.search-bar img {
+    width: 20px;
+    margin: 5px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    cursor: pointer;
+}
+.search-drop-menu {
+    position: absolute;
+    top: 110%;
+    width: 100%;
+    padding: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 0 15px -5px;
+}
+.search-drop-menu span {
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+}
+.search-drop-menu span:not(:last-child) {
+    border-bottom: 1px solid var(--shadow-background);
+}
+.add-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 10px 50px;
+    border: none;
+    background-color: var(--button-blue-background);
+    font-size: 19px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.add-btn:hover {
+    background-color: #008dc5;
+}
+.total-cash {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-right: 1px solid black;
+    padding-right: 22px;
+}
+.focused {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: white;
+    padding: 25px 15px 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px -7px;
+    animation: showSwAl 0.2s;
+    min-width: 315px;
+}
+.focused span {
+    color: red;
+    font-size: 22px;
+    cursor: pointer;
+    top: 5px;
+    margin-bottom: 5px;
+    right: 10px;
+    position: fixed;
+    display: block;
+}
+.focused span i {
+    transition: 0.3s;
+}
+.focused span i:hover {
+    transform: rotate(90deg);
+}
+.table {
+    position: absolute;
+    top: 70px;
+    width: calc(100% - 20px);
+}
+.table .sorted-row {
+    counter-increment: counter;
+}
+.table .sorted-row td:first-of-type {
+    position: relative;
+}
+.table .sorted-row td:first-of-type::before {
+    content: counter(counter);
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 18px;
+}
+/* .table tbody tr td div.con {
+    position: relative;
+} */
+.table img {
+    height: 23px;
+    cursor: pointer;
+}
+.table tr td {
+    padding: 15px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: var(--second-main-background);
+}
+.table .notfound td {
+    position: absolute;
+    color: red;
+    display: block;
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 17px;
+    background-color: white;
+}
+.table thead tr td {
+    background-color: #404040;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+.table tbody tr td:last-child {
+    display: flex;
+    justify-content: space-around;
+}
+.table tbody tr td:last-child i {
+    font-size: 20px;
+    color: #03a9f4;
+    cursor: pointer;
+}
+.table tbody tr td:last-child i:last-child {
+    color: var(--danger-background);
+}
+.form-con {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 170px);
+    width: -moz-fit-content;
+    width: fit-content;
+    row-gap: 13px;
+}
+.form-invoise-con {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.form-button {
+    margin: 25px auto 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 190px;
+    color: white;
+    background: var(--button-green-background);
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.form-button.gray {
+    background-color: var(--button-gray-background);
+}
+.form-button.gray:hover {
+    background-color: #4a616b;
+}
+.form-button:hover {
+    background-color: #10803d;
+}
+form div.inner-con {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+form div.inner-con.rev {
+    flex-direction: column-reverse;
+    gap: 5px;
+}
+form div.inner-con label {
+    margin-left: 10px;
+}
+.form-input {
+    padding: 5px;
+    font-size: 15px;
+    width: 87%;
+    border-radius: 6px;
+    border: 1px solid gray;
+    outline: none;
+    margin: 0 5px;
+    background-color: #b1b1b145;
+}
+.fit {
+    width: 130px;
+}
+input.form-input.small {
+    width: 50px;
+}
+.heighlight-text.form-heading {
+    margin: 10px auto;
+    padding: 5px 20px;
+    width: fit-content;
+    background-color: #607d8b;
+    color: white;
+}
+.borderd {
+    border: 1px solid var(--border-color);
+}
+.color-face {
+    position: absolute;
+    right: -55px;
+    font-size: 19px;
+}
+.drop-menu {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px !important;
+    border-radius: 19px !important;
+}
+.drop-menu p {
+    display: flex;
+    transition: 0.3s;
+    cursor: pointer;
+    pointer-events: auto !important;
+    text-align: center;
+    text-wrap: nowrap;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    min-width: 360px;
+    height: 255px;
+    justify-content: center;
+    align-items: center;
+}
+.drop-menu p:hover {
+    background-color: #d4d4ea;
+    text-decoration: underline;
+}
+.drop-menu p img {
+    height: 35px;
+    margin-left: 10px;
+}

@@ -1,0 +1,10 @@
+Today Tasks
+
+----------- Invoises Page ------------
+- ( Frontend ) Make Invoises Table (Done)
+- ( Frontend ) add salaries form (Done)
+- ( Frontend ) add invoise form (Done)
+- ( Frontend ) add print option on the invoise (Done)
+- ( Frontend & Backend) add in each invoise that own salaries form (Not yet)
+- ( Frontend ) Finish Invoise Update Function (Not Yet)
+- ( Frontend ) Finish Invoise Delete Function (Done)
