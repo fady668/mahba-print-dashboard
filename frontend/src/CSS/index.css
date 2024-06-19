@@ -331,6 +331,9 @@ i.eye {
     position: relative;
     overflow-y: visible;
 }
+.main-page .grid .sec .table tbody tr td:last-child {
+    display: table-cell !important;
+}
 .main-page .grid .sec .table {
     position: unset;
     margin-top: 25px;

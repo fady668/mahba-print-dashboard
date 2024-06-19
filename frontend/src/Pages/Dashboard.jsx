@@ -75,7 +75,7 @@ const Dashboard = () => {
                 )}
                 <div className="left-part">
                     <i
-                        class="fa-solid fa-bars show-r-part"
+                        className="fa-solid fa-bars show-r-part"
                         onClick={() => setShowRightPart(!showRightPart)}></i>
                     {/* <h1>مرحباً ()</h1> */}
                     <Outlet />

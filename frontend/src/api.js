@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./Constants";
+import { Navigate } from "react-router-dom";
 
 const api = axios.create({
     baseURL: "http://127.0.0.1:8000/",
@@ -15,6 +16,18 @@ api.interceptors.request.use(
     },
     (error) => {
         return Promise.reject(error);
+    }
+);
+api.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.status === 403) {
+            alert("يجب ان تسجل الدخول من جديد...");
+            window.location.href = "/login";
+        }
+        return Promise.reject(error); // Pass the error along
     }
 );
 

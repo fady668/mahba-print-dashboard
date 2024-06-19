@@ -177,7 +177,8 @@ class Salaries(models.Model):
     kohley_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     special_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     slofan_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
-    taksir_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
+    taksir_full_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
+    taksir_half_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     UV_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     film_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     zenk_sal = models.DecimalField(max_digits=15, decimal_places=1, blank=False, default=Decimal(0.00))
@@ -201,7 +202,7 @@ class InvoiseSalaries(models.Model):
     film_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     zenk_sal = models.DecimalField(max_digits=15, decimal_places=1, blank=False, default=Decimal(0.00))
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    invoise_id = models.ForeignKey(Invoise, on_delete=models.CASCADE)
     invoise = models.CharField(max_length=50)
 
 class ReceivedCash(models.Model):
@@ -209,9 +210,14 @@ class ReceivedCash(models.Model):
         ("كاش", "كاش"),
         ("محفظه الكترونيه", "محفظه الكترونيه")
     ]
+    PUSH_TO_CHOICES = [
+        ("الفواتير", "الفواتير"),
+        ("الاضافات", "الاضافات")
+    ]
 
     received_value = models.DecimalField(max_digits=15, decimal_places=1, blank=False)
     date = models.DateTimeField(auto_now_add=True)
+    push_to = models.CharField(max_length=50, choices=PUSH_TO_CHOICES, blank=False)
     push_way = models.CharField(max_length=50, choices=PUSH_WAY_CHOICES, blank=False)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -219,7 +225,9 @@ class ReceivedCash(models.Model):
 class Additional(models.Model):
     additional_type = models.CharField(max_length=50, blank=False, verbose_name="الصنف")
     count = models.IntegerField(blank=False, verbose_name="العدد")
-    salary_of_one = models.DecimalField(max_digits=15, decimal_places=1, blank=False, verbose_name="سعر الوحده")
+    salary_of_one = models.DecimalField(max_digits=15, decimal_places=2, blank=False, verbose_name="سعر الوحده")
     total = models.CharField(max_length=50, verbose_name="الاجمالي")
+    remaining_cash = models.DecimalField(default=Decimal(0.00), max_digits=10, decimal_places=2)
+    done = models.BooleanField(default=False)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)

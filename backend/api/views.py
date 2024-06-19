@@ -66,24 +66,28 @@ class InvoisesView(generics.ListCreateAPIView):
         invoiseModel = Invoise.objects.all()
         currentName = data.get('name')
         name_lst = []
+        same_name_lst = []
         newName = ''
 
         for x in invoiseModel:
             name_lst.append(x.name)
 
-        if currentName in name_lst:
-            for n in name_lst:
-                    if '(' in n:
+        for n in name_lst:
+            if (n.startswith(currentName)) :
+                same_name_lst.append(n)
+        else:
+            newName = currentName
+            
+        if same_name_lst :
+            n = same_name_lst[-1]
+            if '(' in n:
                         n_p1 = n[:n.find('(')]
                         n_p2 = n[n.find('('):]
                         name_num = int(str(n_p2[1:]).strip(')'))
 
-                        if n_p1.strip() == currentName :
-                            newName = currentName + f' ({name_num + 1})'
-                    else:    
-                        newName = currentName + ' (2)'
-        else:
-            newName = currentName
+                        newName = currentName + f' ({name_num + 1})'
+            else:    
+                newName = currentName + ' (2)'
 
         serializer.validated_data['name'] = newName
         # Vars
@@ -541,26 +545,43 @@ class ReceivedCashView(generics.ListCreateAPIView):
             data = serializer.validated_data
             client = Client.objects.get(name=data.get('client'))
             invoises = Invoise.objects.filter(client=data.get('client'))
+            additionals = Additional.objects.filter(client.data.get('client'))
             # auto cashing logic
             client.totalCash -= Decimal(data.get('received_value'))
             client.receivedCash += Decimal(data.get('received_value'))
             inputVal = data.get('received_value')
-            for x in invoises:
-                if inputVal:
-                    if inputVal > x.remaining_cash:
-                        inputVal -= x.remaining_cash
-                        x.remaining_cash = 0
-                        x.done = True
-                    elif inputVal < x.remaining_cash:
-                        x.remaining_cash -= inputVal
-                        inputVal = 0
-                    elif inputVal == x.remaining_cash:
-                        inputVal = 0
-                        x.remaining_cash = 0
-                        x.done = True
-
+            if data.push_to == 'الفواتير':
+                for x in invoises:
+                    if inputVal:
+                        if inputVal > x.remaining_cash:
+                            inputVal -= x.remaining_cash
+                            x.remaining_cash = 0
+                            x.done = True
+                        elif inputVal < x.remaining_cash:
+                            x.remaining_cash -= inputVal
+                            inputVal = 0
+                        elif inputVal == x.remaining_cash:
+                            inputVal = 0
+                            x.remaining_cash = 0
+                            x.done = True
                     x.save()
                     
+            elif data.push_to == 'الاضافات':
+                for x in additionals:
+                    if inputVal:
+                        if inputVal > x.remaining_cash:
+                            inputVal -= x.remaining_cash
+                            x.remaining_cash = 0
+                            x.done = True
+                        elif inputVal < x.remaining_cash:
+                            x.remaining_cash -= inputVal
+                            inputVal = 0
+                        elif inputVal == x.remaining_cash:
+                            inputVal = 0
+                            x.remaining_cash = 0
+                            x.done = True
+                    x.save()
+                
             client.save()
             serializer.save(owner=self.request.user)
         else:

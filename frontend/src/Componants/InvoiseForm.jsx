@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import api from "../api";
 import printImg from "../Images/download.png";
 import SalariesForm from "./SalariesForm";
@@ -186,6 +186,14 @@ const InvoiseForm = (props) => {
         }
         getInvoisesSals();
     }, []);
+
+    useEffect(() => {
+        if (slofan_geha === "وجه واحد") {
+            setSlofan_count(slofan_count / 2);
+        } else if (slofan_geha === "وجهين") {
+            setSlofan_count(slofan_count * 2);
+        }
+    }, [slofan_geha]);
 
     const getZenkSal = async () => {
         const res = await api.get("/api/salaries");
@@ -891,7 +899,7 @@ const InvoiseForm = (props) => {
                                     setSlofan_geha(e.target.value)
                                 }>
                                 <option value="" selected></option>
-                                <option value="وجهه واحد">وجهه واحد</option>
+                                <option value="وجه واحد">وجه واحد</option>
                                 <option value="وجهين">وجهين</option>
                             </select>
                         </div>
