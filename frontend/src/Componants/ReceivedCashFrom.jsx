@@ -23,6 +23,7 @@ const ReceivedCashFrom = (props) => {
         const receivedCash = {
             received_value,
             push_way,
+            push_to,
             client,
         };
         if (method === "add") {

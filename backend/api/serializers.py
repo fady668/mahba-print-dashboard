@@ -81,7 +81,8 @@ class AdditionalSerializer(serializers.ModelSerializer):
         fields = '__all__'
         extra_kwargs = {
              "owner" : {"read_only" : True},
-             "total" : {"read_only" : True}
+             "total" : {"read_only" : True},
+             "remaining_cash" : {"read_only" : True}
              }
         
     def create(self, validated_data):

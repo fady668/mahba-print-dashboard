@@ -42,7 +42,8 @@ const SalariesForm = (props) => {
         setKohley_sal(data[0].kohley_sal);
         setSpecial_sal(data[0].special_sal);
         setSlofan_sal(data[0].slofan_sal);
-        setTaksir_sal(data[0].taksir_sal);
+        setTaksir_full_sal(data[0].taksir_full_sal);
+        setTaksir_half_sal(data[0].taksir_half_sal);
         setUV_sal(data[0].UV_sal);
         setFilm_sal(data[0].film_sal);
         setZenk_sal(data[0].zenk_sal);
@@ -60,7 +61,8 @@ const SalariesForm = (props) => {
         setKohley_sal(data.kohley_sal);
         setSpecial_sal(data.special_sal);
         setSlofan_sal(data.slofan_sal);
-        setTaksir_sal(data.taksir_sal);
+        setTaksir_full_sal(data[0].taksir_full_sal);
+        setTaksir_half_sal(data[0].taksir_half_sal);
         setUV_sal(data.UV_sal);
         setFilm_sal(data.film_sal);
         setZenk_sal(data.zenk_sal);
@@ -83,7 +85,8 @@ const SalariesForm = (props) => {
         kohley_sal,
         special_sal,
         slofan_sal,
-        taksir_sal,
+        taksir_full_sal,
+        taksir_half_sal,
         UV_sal,
         film_sal,
         zenk_sal,
@@ -102,7 +105,8 @@ const SalariesForm = (props) => {
         kohley_sal,
         special_sal,
         slofan_sal,
-        taksir_sal,
+        taksir_full_sal,
+        taksir_half_sal,
         UV_sal,
         film_sal,
         zenk_sal,
@@ -249,17 +253,6 @@ const SalariesForm = (props) => {
           />
         </div>
         <div className="inner-con">
-          <label>تكسير</label>
-          <input
-            className="form-input"
-            required
-            type="text"
-            value={taksir_sal}
-            onChange={(e) => setTaksir_sal(e.target.value)}
-            name="taksir_sal"
-          />
-        </div>
-        <div className="inner-con">
           <label>UV</label>
           <input
             className="form-input"
@@ -281,8 +274,7 @@ const SalariesForm = (props) => {
             name="film_sal"
           />
         </div>
-        <hr />
-        <div className="inner-con last">
+        <div className="inner-con">
           <label>الزنك</label>
           <input
             className="form-input"
@@ -291,6 +283,29 @@ const SalariesForm = (props) => {
             value={zenk_sal}
             onChange={(e) => setZenk_sal(e.target.value)}
             name="zenk_sal"
+          />
+        </div>
+        <hr />
+        <div className="inner-con last">
+          <label>كامل</label>
+          <input
+            className="form-input"
+            required
+            type="text"
+            value={taksir_full_sal}
+            onChange={(e) => setTaksir_full_sal(e.target.value)}
+            name="taksir_full_sal"
+          />
+        </div>
+        <div className="inner-con last">
+          <label>نصف</label>
+          <input
+            className="form-input"
+            required
+            type="text"
+            value={taksir_half_sal}
+            onChange={(e) => setTaksir_half_sal(e.target.value)}
+            name="taksir_half_sal"
           />
         </div>
       </div>

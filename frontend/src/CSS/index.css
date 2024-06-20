@@ -1,1281 +1,1292 @@
 :root {
-    --main-background: #f0f0f0;
-    --second-main-background: #f1f5f9;
-    --shadow-background: #cbcbcb;
-    --page-background: #ef018d;
-    --button-blue-background: #00adf1;
-    --danger-background: #ee0d58;
-    --button-green-background: #4caf50;
-    --button-gray-background: #607d8b;
-    --border-color: #b1b1b1;
-    --left-page-left-value: calc(50% - 150px);
+  --main-background: #f0f0f0;
+  --second-main-background: #f1f5f9;
+  --shadow-background: #cbcbcb;
+  --page-background: #ef018d;
+  --button-blue-background: #00adf1;
+  --danger-background: #ee0d58;
+  --button-green-background: #4caf50;
+  --button-gray-background: #607d8b;
+  --border-color: #b1b1b1;
+  --left-page-left-value: calc(50% - 150px);
 }
 body {
-    background-color: var(--main-background);
-    overflow: hidden;
+  background-color: var(--main-background);
+  overflow: hidden;
 }
 
 /* Login Page */
 .login-page .from-container {
-    position: absolute;
-    display: flex;
-    width: 990px;
-    height: 512px;
-    border-radius: 50px;
-    background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    justify-content: space-evenly;
-    align-items: center;
+  position: absolute;
+  display: flex;
+  width: 990px;
+  height: 512px;
+  border-radius: 50px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .login-page .from-container::before {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background-color: var(--shadow-background);
-    top: 280px;
-    left: 740px;
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: var(--shadow-background);
+  top: 280px;
+  left: 740px;
 }
 .login-page .from-container .logo-img {
-    width: 280px;
-    z-index: 1;
-    animation-name: logo-ups-and-down;
-    animation-iteration-count: infinite;
-    animation-duration: 6s;
+  width: 280px;
+  z-index: 1;
+  animation-name: logo-ups-and-down;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
 }
 @keyframes logo-ups-and-down {
-    0% {
-        transform: translate(0, 20px);
-    }
-    50% {
-        transform: translate(0, -20px);
-    }
-    100% {
-        transform: translate(0, 20px);
-    }
+  0% {
+    transform: translate(0, 20px);
+  }
+  50% {
+    transform: translate(0, -20px);
+  }
+  100% {
+    transform: translate(0, 20px);
+  }
 }
 .login-page .from-container .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .login-page .from-container .form .form-title {
-    text-align: center;
-    position: relative;
+  text-align: center;
+  position: relative;
 }
 .login-page .from-container .form .form-title::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    width: 70%;
-    height: 80%;
-    background-color: var(--shadow-background);
-    transform: translate(-50%, 0);
-    z-index: -1;
-    border-radius: 10px;
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 70%;
+  height: 80%;
+  background-color: var(--shadow-background);
+  transform: translate(-50%, 0);
+  z-index: -1;
+  border-radius: 10px;
 }
 .login-page .from-container .form label {
-    margin: 10px 0;
-    font-weight: bold;
-    margin-right: 10px;
+  margin: 10px 0;
+  font-weight: bold;
+  margin-right: 10px;
 }
 .login-page .from-container .form .input-con {
-    padding: 10px 15px;
-    border-radius: 17px;
-    background-color: var(--main-background);
-    display: flex;
-    justify-content: space-between;
+  padding: 10px 15px;
+  border-radius: 17px;
+  background-color: var(--main-background);
+  display: flex;
+  justify-content: space-between;
 }
 .login-page .from-container .form .input-con input {
-    height: 23px;
-    border: none;
-    outline: none;
-    background-color: var(--main-background);
-    direction: ltr;
-    flex: 1;
+  height: 23px;
+  border: none;
+  outline: none;
+  background-color: var(--main-background);
+  direction: ltr;
+  flex: 1;
 }
 .login-page .from-container .form .input-con i {
-    font-size: 20px;
-    margin-right: 10px;
+  font-size: 20px;
+  margin-right: 10px;
 }
 i.eye {
-    font-size: 18px;
-    width: 30px;
+  font-size: 18px;
+  width: 30px;
 }
 .login-page .from-container .form button {
-    position: relative;
-    padding: 10px;
-    color: white;
-    background-color: var(--button-blue-background);
-    border: none;
-    outline: none;
-    width: 80%;
-    margin: 37px auto 0 auto;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+  position: relative;
+  padding: 10px;
+  color: white;
+  background-color: var(--button-blue-background);
+  border: none;
+  outline: none;
+  width: 80%;
+  margin: 37px auto 0 auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .login-page .from-container .form button:hover {
-    background-color: #008dc5;
+  background-color: #008dc5;
 }
 
 /* Dashboard Constants Parts */
 .dashboard .right-part {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 285px;
-    height: calc(100% - 20px);
-    background-color: white;
-    border-radius: 20px;
-    z-index: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 285px;
+  height: calc(100% - 20px);
+  background-color: white;
+  border-radius: 20px;
+  z-index: 0;
 }
 .dashboard .main-over-layout {
-    display: none;
+  display: none;
 }
 .dashboard .show-r-part {
-    position: relative;
-    z-index: 0;
-    top: 22px;
-    right: 20px;
-    font-size: 25px;
-    display: none;
-    z-index: 1;
+  position: relative;
+  z-index: 0;
+  top: 22px;
+  right: 20px;
+  font-size: 25px;
+  display: none;
+  z-index: 1;
 }
 .dashboard .right-part span {
-    display: none !important;
-    color: red;
-    margin: 15px 15px 0 0;
-    font-size: 25px;
-    cursor: pointer;
-    top: 5px;
-    margin-bottom: 5px;
-    right: 10px;
-    position: fixed;
-    display: block;
+  display: none !important;
+  color: red;
+  margin: 15px 15px 0 0;
+  font-size: 25px;
+  cursor: pointer;
+  top: 5px;
+  margin-bottom: 5px;
+  right: 10px;
+  position: fixed;
+  display: block;
 }
 .dashboard .right-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 210px;
-    height: 100%;
-    object-fit: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 210px;
+  height: 100%;
+  object-fit: cover;
 }
 .dashboard .heading-content {
-    position: relative;
-    margin: 30px 15px 80px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row-reverse;
+  position: relative;
+  margin: 30px 15px 80px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
 }
 .dashboard .heading-content img {
-    width: 85px;
+  width: 85px;
 }
 .dashboard .heading-content p {
-    padding: 0px;
-    text-align: center;
-    font-size: 20px;
+  padding: 0px;
+  text-align: center;
+  font-size: 20px;
 }
 .dashboard .heading-content::before {
-    content: "";
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translate(-50%, 19px);
-    background-color: black;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 10px solid white;
-    z-index: 1;
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translate(-50%, 19px);
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 10px solid white;
+  z-index: 1;
 }
 .dashboard .heading-content::after {
-    content: "";
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    width: 100%;
-    height: 1px;
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  width: 100%;
+  height: 1px;
 }
 .dashboard .con {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translate(0, -50%);
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 .dashboard .button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-right: 10px;
-    padding: 15px 10px;
-    width: calc(100% - 20px);
-    border-radius: 20px;
-    font-size: 23px;
-    transition: 0.3s;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+  padding: 15px 10px;
+  width: calc(100% - 20px);
+  border-radius: 20px;
+  font-size: 23px;
+  transition: 0.3s;
+  margin-bottom: 15px;
 }
 .dashboard .button:nth-child(8) {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 .dashboard .logout-button img,
 .dashboard .button img {
-    width: 28px;
+  width: 28px;
 }
 .dashboard .button:hover {
-    background-color: #00000024;
+  background-color: #00000024;
 }
 .dashboard .logout-btn {
-    color: red;
-    border: none;
-    outline: none;
-    background-color: white;
-    position: absolute;
-    bottom: 0;
+  color: red;
+  border: none;
+  outline: none;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
 }
 .dashboard .logout-btn:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 .dashboard .left-part {
-    max-width: calc(100% - 330px);
-    margin-right: 315px;
+  max-width: calc(100% - 330px);
+  margin-right: 315px;
 }
 /* Main Page */
 .main-page {
-    overflow-y: auto;
-    padding-bottom: 10px;
-    height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 10px;
+  height: 100vh;
 }
 .main-page .new-user-mess {
-    position: absolute;
-    top: 18px;
-    right: 50%;
-    font-size: 19px;
-    font-weight: bold;
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 17px;
-    box-shadow: 0 0 6px 1px #e91e63;
+  position: absolute;
+  top: 18px;
+  right: 50%;
+  font-size: 19px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 17px;
+  box-shadow: 0 0 6px 1px #e91e63;
 }
 .main-page::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 .main-page .grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: space-evenly;
-    gap: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-evenly;
+  gap: 20px;
 }
 .main-page .grid div {
-    min-width: 49%;
-    padding: 15px;
-    background-color: white;
-    border-radius: 15px;
+  min-width: 49%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 15px;
 }
 .main-page .grid .user-total-cash,
 .main-page .grid .cash-sec {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    row-gap: 30px;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  row-gap: 30px;
+  flex-direction: column;
 }
 .main-page .grid .user-total-cash h2 {
-    font-size: 27px;
+  font-size: 27px;
 }
 .main-page .grid .user-total-cash span {
-    font-size: 25px;
-    color: #9e9e9e;
-    font-weight: bold;
+  font-size: 25px;
+  color: #9e9e9e;
+  font-weight: bold;
 }
 .main-page .grid .cash-sec {
-    align-items: flex-start;
+  align-items: flex-start;
 }
 .main-page .grid .cash-sec .cash {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 19px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 19px;
 }
 .main-page .grid .cash-sec .cash .value {
-    font-weight: bold;
-    position: relative;
+  font-weight: bold;
+  position: relative;
 }
 .main-page .grid .cash-sec .total-received .value {
-    color: #4caf50;
+  color: #4caf50;
 }
 .main-page .grid .cash-sec .total-received .value::before {
-    content: "+";
-    position: absolute;
-    left: -15px;
+  content: "+";
+  position: absolute;
+  left: -15px;
 }
 .main-page .grid .cash-sec .total-remaining .value {
-    color: red;
+  color: red;
 }
 .main-page .grid .cash-sec .total-remaining .value::before {
-    content: "-";
-    position: absolute;
-    left: -15px;
+  content: "-";
+  position: absolute;
+  left: -15px;
 }
 .main-page .grid .sec {
-    position: relative;
-    overflow-y: visible;
+  position: relative;
+  overflow-y: visible;
 }
 .main-page .grid .sec .table tbody tr td:last-child {
-    display: table-cell !important;
+  display: table-cell !important;
 }
 .main-page .grid .sec .table {
-    position: unset;
-    margin-top: 25px;
-    width: 100%;
+  position: unset;
+  margin-top: 25px;
+  width: 100%;
 }
 .main-page .grid .sec .table .table-loading {
-    width: 50px;
-    height: 50px;
-    border-width: 5px;
-    margin-top: 60px;
+  width: 50px;
+  height: 50px;
+  border-width: 5px;
+  margin-top: 60px;
 }
 .main-page .grid .sec .table .notfound td {
-    top: 10px !important;
-    left: 100px;
+  top: 10px !important;
+  left: 100px;
 }
 .main-page .grid .sec .table thead tr td {
-    background-color: #009688;
-    font-size: 21px;
+  background-color: #009688;
+  font-size: 21px;
 }
 .main-page .grid .sec h2 {
-    position: relative;
+  position: relative;
 }
 .main-page .grid .sec h2::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    height: 3px;
-    width: 25%;
-    border-radius: 10px;
-    background-color: var(--button-blue-background);
-    animation: underline-ani linear 0.5s;
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  height: 3px;
+  width: 25%;
+  border-radius: 10px;
+  background-color: var(--button-blue-background);
+  animation: underline-ani linear 0.5s;
 }
 @keyframes underline-ani {
-    0% {
-        width: 0;
-    }
-    50% {
-        width: 40%;
-    }
-    100% {
-        width: 25%;
-    }
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 40%;
+  }
+  100% {
+    width: 25%;
+  }
 }
 
 /* Not Found Page */
 .page404 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 30px;
-    font-weight: bold;
-    display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
 }
 
 /* Clients Page */
 .add-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 10px 50px;
-    border: none;
-    background-color: var(--button-blue-background);
-    font-size: 19px;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 10px 50px;
+  border: none;
+  background-color: var(--button-blue-background);
+  font-size: 19px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .add-btn:hover {
-    background-color: #008dc5;
+  background-color: #008dc5;
 }
 .over-layout {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background-color: #00000066;
-    pointer-events: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: #00000066;
+  pointer-events: auto;
 }
 .invoise-sals-layout {
-    height: 250%;
+  height: 250%;
 }
 @keyframes showSwAl {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 .clients-page .page-content .clinet-form form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .form-head {
-    text-align: center;
-    margin: 10px;
+  text-align: center;
+  margin: 10px;
 }
 .form-label {
-    padding-right: 15px;
-    margin: 10px 0;
-    display: block;
+  padding-right: 15px;
+  margin: 10px 0;
+  display: block;
 }
 .small-form-input {
-    border: none;
-    outline: none;
-    background-color: var(--main-background);
-    border-radius: 6px;
-    font-size: 23px;
-    padding: 3px 10px;
-    width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--main-background);
+  border-radius: 6px;
+  font-size: 23px;
+  padding: 3px 10px;
+  width: 100%;
 }
 .clients-page .page-content .total-cash {
-    position: absolute;
-    top: 5px;
-    left: 0;
-    margin-left: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border-right: 1px solid black;
-    padding-right: 22px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-right: 1px solid black;
+  padding-right: 22px;
 }
 .clients-page .page-content .total-received-cash {
-    position: absolute;
-    top: 5px;
-    left: 200px;
-    margin-left: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+  position: absolute;
+  top: 5px;
+  left: 200px;
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 /* Invoises Page */
 .client-name {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    margin-left: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    transform: translate(-50%, 0);
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transform: translate(-50%, 0);
 }
 .sal-btn {
-    position: absolute;
-    top: 15px;
-    right: 280px;
-    padding: 10px 50px;
-    border: none;
-    background-color: var(--button-gray-background);
-    font-size: 19px;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+  position: absolute;
+  top: 15px;
+  right: 280px;
+  padding: 10px 50px;
+  border: none;
+  background-color: var(--button-gray-background);
+  font-size: 19px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .sal-btn:hover {
-    background-color: #4a616b;
+  background-color: #4a616b;
 }
 .total-cash.not-border {
-    border-color: transparent;
+  border-color: transparent;
 }
 .sal-form form hr {
-    position: absolute;
-    bottom: 127px;
-    width: 75%;
-    background-color: #00000059;
-    height: 1px;
-    transform: translateX(50%);
-    right: 50%;
+  position: absolute;
+  bottom: 130px;
+  width: 75%;
+  background-color: #00000059;
+  height: 1px;
+  transform: translateX(50%);
+  right: 50%;
+}
+.sal-form form hr::before {
+  content: "تكسير";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 0 5px;
+  background-color: white;
+  font-weight: bold;
+  font-size: 18px;
 }
 .sal-form form .form-con .inner-con.last {
-    margin-top: 20px;
+  margin-top: 30px;
 }
 
 .invoise-form {
-    overflow-y: auto;
-    max-height: 100vh;
-    max-width: 590px;
-    min-width: 590px;
-    scroll-behavior: smooth;
+  overflow-y: auto;
+  max-height: 100vh;
+  max-width: 590px;
+  min-width: 590px;
+  scroll-behavior: smooth;
 }
 .invoise-form .name-input {
-    height: 30px;
+  height: 30px;
 }
 .inner-con:first-of-type {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 .inner-con:last-of-type {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 .invoise-form .heighlight-text.form-heading {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 .invoise-form label {
-    text-wrap: nowrap;
+  text-wrap: nowrap;
 }
 .invoise-form .colors {
-    position: relative;
-    width: fit-content;
-    margin-right: 50px;
-    border-radius: 10px;
-    display: flex;
-    gap: 0;
+  position: relative;
+  width: fit-content;
+  margin-right: 50px;
+  border-radius: 10px;
+  display: flex;
+  gap: 0;
 }
 .invoise-form .colors p {
-    font-weight: bold;
-    padding: 9px;
+  font-weight: bold;
+  padding: 9px;
 }
 .invoise-form .colors p:not(:last-child):not(.color-face) {
-    border-left: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
 }
 .invoise-form .colors input {
-    margin: 0 9px;
+  margin: 0 9px;
 }
 .invoise-form .colors input:last-child {
-    width: 30px;
+  width: 30px;
 }
 .invoise-form .colors input:nth-of-type(5) {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 .invoise-form .colors input:nth-of-type(6) {
-    margin-right: 35px;
+  margin-right: 35px;
 }
 .invoise-form .colors input:nth-of-type(7) {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 .invoise-form .colors input:nth-of-type(8) {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 .invoise-form .colors input:nth-of-type(9) {
-    margin-right: 35px;
+  margin-right: 35px;
 }
 .invoise-form .colors input:last-child {
-    width: 85px;
+  width: 85px;
 }
 .invoise-form select[name="sorting"] {
-    width: 160px;
+  width: 160px;
 }
 .invoise-form input[name="counting"] {
-    width: 100px;
+  width: 100px;
 }
 .taglid-head-labels {
-    width: 100%;
-    justify-content: space-around !important;
+  width: 100%;
+  justify-content: space-around !important;
 }
 .borderd.padding {
-    padding: 5px 10px;
-    border-radius: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 .inner-con.fit {
-    width: 175px;
+  width: 175px;
 }
 .inner-con.fit input[type="text"] {
-    width: 85px;
+  width: 85px;
 }
 .btns {
-    position: relative;
-    padding-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 0 10px 0;
+  position: relative;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0 10px 0;
 }
 .btns::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    background-color: #00000059;
-    height: 3px;
-    transform: translateX(50%);
-    right: 50%;
-    top: 0;
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: #00000059;
+  height: 3px;
+  transform: translateX(50%);
+  right: 50%;
+  top: 0;
 }
 .btns img {
-    height: 40px;
-    cursor: pointer;
+  height: 40px;
+  cursor: pointer;
 }
 .btns button,
 .btns a {
-    margin: 0;
+  margin: 0;
 }
 .btns .inner-con {
-    justify-content: flex-start;
-    width: fit-content;
-    font-size: 20px;
-    font-weight: bold;
+  justify-content: flex-start;
+  width: fit-content;
+  font-size: 20px;
+  font-weight: bold;
 }
 .btns .inner-con input {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .invoise-sals {
-    position: fixed;
-    left: 150px;
+  position: fixed;
+  left: 150px;
 }
 
 /* Kashf Page */
 .kashf-page {
-    position: relative;
-    overflow-y: auto;
-    padding-bottom: 10px;
-    height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  padding-bottom: 10px;
+  height: 100vh;
 }
 .kashf-page::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 .kashf-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transform: translate(-50%, -50%);
-    gap: 30px;
-    font-size: 30px;
-    padding: 100px !important;
-    background-color: white;
-    border-radius: 45px;
-    width: 900px;
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  gap: 30px;
+  font-size: 30px;
+  padding: 100px !important;
+  background-color: white;
+  border-radius: 45px;
+  width: 900px;
+  z-index: 1;
 }
 .kashf-form::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: -1;
-    border-radius: 45px;
-    border: 2px solid var(--button-blue-background);
-    transition: 0.3s;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+  border-radius: 45px;
+  border: 2px solid var(--button-blue-background);
+  transition: 0.3s;
 }
 .kashf-form:hover::before {
-    top: -2px;
-    left: -2px;
+  top: -2px;
+  left: -2px;
 }
 .kashf-form::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    z-index: -1;
-    border-radius: 45px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+  border-radius: 45px;
 }
 .kashf-form .fa-user,
 .kashf-form-label {
-    font-size: 40px;
-    color: black;
+  font-size: 40px;
+  color: black;
 }
 .kashf-form-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 .kashf-form .form-input {
-    width: 50%;
-    position: relative;
+  width: 50%;
+  position: relative;
 }
 .kashf-drop-menu {
-    top: 280px !important;
-    width: 50% !important;
-    font-size: 17px;
-    border-radius: 10px;
+  top: 280px !important;
+  width: 50% !important;
+  font-size: 17px;
+  border-radius: 10px;
 }
 .fa-arrow-down {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .rotated {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .kashf-page .table tr.notfound td {
-    z-index: 1;
-    top: -64px;
-    left: 110px;
-    background-color: transparent;
+  z-index: 1;
+  top: -64px;
+  left: 110px;
+  background-color: transparent;
 }
 .kashf-page .kashf-client-title {
-    border-radius: 20px;
-    transition: 0.3s;
-    position: sticky;
-    margin: 0 auto;
-    display: block;
-    width: fit-content;
-    z-index: 1;
-    animation-duration: 0.5s;
-    transition: 0.3s;
-    margin: -15px auto;
-    animation-name: page-title-ani;
-    animation-timeline: scroll();
+  border-radius: 20px;
+  transition: 0.3s;
+  position: sticky;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+  z-index: 1;
+  animation-duration: 0.5s;
+  transition: 0.3s;
+  margin: -15px auto;
+  animation-name: page-title-ani;
+  animation-timeline: scroll();
 }
 .kashf-page .print-btn {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: fit-content;
-    margin-top: 0;
-    padding: 5px 30px;
-    border-radius: 10px;
-    position: absolute;
-    left: 10px;
-    font-weight: bold;
-    gap: 3px;
-    font-size: 20px;
-    transition: 0.3s;
-    animation-duration: 0.3s;
-    animation-name: kashf-page-ani;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 0;
+  padding: 5px 30px;
+  border-radius: 10px;
+  position: absolute;
+  left: 10px;
+  font-weight: bold;
+  gap: 3px;
+  font-size: 20px;
+  transition: 0.3s;
+  animation-duration: 0.3s;
+  animation-name: kashf-page-ani;
 }
 .kashf-page .print-btn img {
-    height: 23px;
+  height: 23px;
 }
 .kashf-page .control-con {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
 }
 .kashf-page button.step-back {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-weight: bold;
-    font-size: 15px;
-    gap: 10px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 15px;
+  gap: 10px;
+  cursor: pointer;
 }
 .kashf-page button.step-back:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .kashf-page button.step-back img {
-    height: 18px;
+  height: 18px;
 }
 .kashf-page .grid {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    gap: 30px;
-    margin-top: 15px;
-    animation-duration: 0.6s;
-    animation: kashf-page-ani;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  gap: 30px;
+  margin-top: 15px;
+  animation-duration: 0.6s;
+  animation: kashf-page-ani;
 }
 .kashf-page .grid .child {
-    width: 50%;
-    height: 151px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    padding: 40px;
-    border-radius: 15px;
+  width: 50%;
+  height: 151px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
 }
 .kashf-page .grid .child p.title {
-    position: relative;
-    font-size: 25px;
-    margin-bottom: 20px;
-    font-weight: bold;
+  position: relative;
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 .kashf-page .grid .child p.title::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 80%;
-    bottom: -10px;
-    height: 3px;
-    background-color: var(--button-blue-background);
-    transform: translate(-50%, -50%);
-    animation: title-before-ani;
-    animation-duration: 0.6s;
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 80%;
+  bottom: -10px;
+  height: 3px;
+  background-color: var(--button-blue-background);
+  transform: translate(-50%, -50%);
+  animation: title-before-ani;
+  animation-duration: 0.6s;
 }
 .kashf-page .grid .child span.content {
-    font-size: 20px;
+  font-size: 20px;
 }
 .section-title {
-    font-size: 19px;
-    font-weight: bold;
-    padding: 19px 0;
-    display: block;
-    width: 100%;
-    text-align: center;
-    background-color: var(--button-blue-background);
-    margin-bottom: 10px;
-    top: 0;
-    color: white;
-    border-radius: 10px;
-    left: 0;
+  font-size: 19px;
+  font-weight: bold;
+  padding: 19px 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--button-blue-background);
+  margin-bottom: 10px;
+  top: 0;
+  color: white;
+  border-radius: 10px;
+  left: 0;
 }
 .kashf-page .kashf-invoises {
-    position: relative !important;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
-    padding: 10px;
-    margin-top: 15px;
-    animation: kashf-page-content-ani linear;
-    animation-duration: 0.1s;
+  position: relative !important;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 15px;
+  animation: kashf-page-content-ani linear;
+  animation-duration: 0.1s;
 }
 .kashf-page .table {
-    position: relative;
-    width: 100%;
-    top: 0 !important;
+  position: relative;
+  width: 100%;
+  top: 0 !important;
 }
 .kashf-page .table .table-loading {
-    width: 50px;
-    height: 50px;
-    border-width: 5px;
-    margin-top: 60px;
+  width: 50px;
+  height: 50px;
+  border-width: 5px;
+  margin-top: 60px;
 }
 .table thead td {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .kashf-page .table thead td {
-    background-color: #607d8b;
+  background-color: #607d8b;
 }
 .kashf-page .kashf-additionals {
-    position: relative !important;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
-    padding: 10px;
-    margin-top: 15px;
-    animation: kashf-page-content-ani linear;
-    animation-duration: 0.3s;
+  position: relative !important;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 15px;
+  animation: kashf-page-content-ani linear;
+  animation-duration: 0.3s;
 }
 .kashf-page .kashf-received-cash {
-    position: relative !important;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
-    padding: 10px;
-    margin-top: 15px;
-    animation: kashf-page-content-ani linear;
-    animation-duration: 0.6s;
+  position: relative !important;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 15px;
+  animation: kashf-page-content-ani linear;
+  animation-duration: 0.6s;
 }
 .show-more {
-    display: block;
-    cursor: pointer;
-    padding: 5px 15px;
-    border-radius: 5px;
-    background-color: #607d8bbf;
-    color: white;
-    font-size: 15px;
-    width: fit-content;
+  display: block;
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #607d8bbf;
+  color: white;
+  font-size: 15px;
+  width: fit-content;
 }
 .more {
-    overflow-y: visible;
+  overflow-y: visible;
 }
 .less {
-    overflow-y: auto;
-    height: 37vh;
+  overflow-y: auto;
+  height: 37vh;
 }
 @keyframes kashf-page-content-ani {
-    from {
-        top: 50px;
-    }
-    to {
-        top: 0;
-    }
+  from {
+    top: 50px;
+  }
+  to {
+    top: 0;
+  }
 }
 @keyframes title-before-ani {
-    from {
-        width: 0;
-    }
-    to {
-        width: 80%;
-    }
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
 }
 @keyframes kashf-page-ani {
-    from {
-        margin-top: 40px;
-    }
-    to {
-        margin-top: 0;
-    }
+  from {
+    margin-top: 40px;
+  }
+  to {
+    margin-top: 0;
+  }
 }
 @keyframes page-title-ani {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.7;
-        width: 30%;
-        text-align: center;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        box-shadow: inset 0 0 30px 10px transparent;
-    }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.7;
+    width: 30%;
+    text-align: center;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: inset 0 0 30px 10px transparent;
+  }
 }
 
 /* Print Media */
 @page {
-    scale: 0.8;
-    overflow-y: visible;
-    margin: 10mm;
+  scale: 0.8;
+  overflow-y: visible;
+  margin: 10mm;
 }
 @media print {
-    .page-title {
-        margin-top: 0;
-        width: 100% !important;
-        display: block;
-        text-align: center;
-        background-color: gray;
-        padding: 10px 0;
-        margin: 0 0 30px 0;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        color: white;
-    }
-    .page-title::before {
-        display: none;
-    }
-    .page-content {
-        background-color: transparent !important;
-        overflow-y: visible;
-    }
-    .heighlight-heading,
-    .right-part,
-    .right-bg,
-    .table,
-    .invoises-page .search-bar,
-    .add-btn,
-    .invoises-page h1.page-title,
-    .sal-btn,
-    .total-cash,
-    .show-more {
-        display: none !important;
-    }
-    .invoise-form {
-        overflow-y: visible;
-    }
-    .heighlight-text.form-heading {
-        color: black;
-        border: 1px solid gray;
-    }
-    .btns {
-        display: none;
-    }
-    .left-part {
-        min-width: calc(100% - 20px);
-        margin-right: 0;
-        position: absolute;
-        top: 0;
-        left: 10px;
-    }
-    .left-part::before,
-    .left-part::after {
-        display: none;
-    }
-    .kashf-page,
-    .kashf-invoises,
-    .kashf-additionals {
-        visibility: visible;
-    }
-    .kashf-page {
-        position: relative;
-        width: 100%;
-        overflow-y: auto;
-    }
-    .kashf-page .heighlight-heading {
-        position: static;
-        margin-left: 50%;
-    }
-    .kashf-page .table,
-    .kashf-page .kashf-client-title {
-        display: block !important;
-    }
-    .kashf-page .table thead td {
-        width: 23% !important;
-    }
-    .kashf-page .section-title {
-        background-color: white;
-        color: black;
-        font-size: 25px;
-    }
-    button.step-back,
-    span.print-btn {
-        visibility: hidden;
-    }
-    span.new-page {
-        page-break-before: always;
-    }
+  .page-title {
+    margin-top: 0;
+    width: 100% !important;
+    display: block;
+    text-align: center;
+    background-color: gray;
+    padding: 10px 0;
+    margin: 0 0 30px 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+  }
+  .page-title::before {
+    display: none;
+  }
+  .page-content {
+    background-color: transparent !important;
+    overflow-y: visible;
+  }
+  .heighlight-heading,
+  .right-part,
+  .right-bg,
+  .table,
+  .invoises-page .search-bar,
+  .add-btn,
+  .invoises-page h1.page-title,
+  .sal-btn,
+  .total-cash,
+  .show-more {
+    display: none !important;
+  }
+  .invoise-form {
+    overflow-y: visible;
+  }
+  .heighlight-text.form-heading {
+    color: black;
+    border: 1px solid gray;
+  }
+  .btns {
+    display: none;
+  }
+  .left-part {
+    min-width: calc(100% - 20px);
+    margin-right: 0;
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+  .left-part::before,
+  .left-part::after {
+    display: none;
+  }
+  .kashf-page,
+  .kashf-invoises,
+  .kashf-additionals {
+    visibility: visible;
+  }
+  .kashf-page {
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+  }
+  .kashf-page .heighlight-heading {
+    position: static;
+    margin-left: 50%;
+  }
+  .kashf-page .table,
+  .kashf-page .kashf-client-title {
+    display: block !important;
+  }
+  .kashf-page .table thead td {
+    width: 23% !important;
+  }
+  .kashf-page .section-title {
+    background-color: white;
+    color: black;
+    font-size: 25px;
+  }
+  button.step-back,
+  span.print-btn {
+    visibility: hidden;
+  }
+  span.new-page {
+    page-break-before: always;
+  }
 }
 /* Responsive Part */
 /* Mobil */
 @media (max-width: 768px) {
-    .new-user-mess {
-        position: static !important;
-        display: block;
-        width: 100% !important;
-        transform: none !important;
-    }
-    .right-part {
-        width: calc(100% - 30px) !important;
-        left: 15px;
-    }
-    .total-cash,
-    .total-received-cash,
-    .left-part::before,
-    .left-part::after {
-        display: none !important;
-    }
-    .main-page .grid {
-        grid-template-columns: 1fr !important;
-        margin-bottom: 75px;
-    }
-    .main-page tr.notfound td {
-        left: 71px !important;
-        font-size: 12px !important;
-        padding: 0 !important;
-    }
-    .search-bar {
-        top: 70px !important;
-        z-index: -5;
-    }
-    .invoises-page .page-content,
-    .clients-page .page-content {
-        top: 140px;
-        height: calc(100% - 150px);
-        z-index: -5;
-    }
-    .heighlight-heading {
-        position: fixed !important;
-        left: 75px !important;
-        border-bottom-left-radius: 0 !important;
-        border-top-right-radius: 20px;
-        padding: 5px 50px !important;
-        margin-top: 0px !important;
-    }
-    .table-loading {
-        margin-top: 0 !important;
-    }
-    .table tbody tr td:last-child i,
-    .table tbody tr td:last-child img {
-        margin: 8px;
-    }
-    .invoise-form {
-        width: 100%;
-        overflow-x: scroll;
-    }
-    .invoise-form .form {
-        width: 570px !important;
-    }
-    .invoises-page {
-        z-index: 1;
-    }
-    .drop-menu {
-        flex-direction: column !important;
-    }
-    .kashf-form {
-        width: 100% !important;
-    }
-    .kashf-form::before {
-        display: none;
-    }
-    .kashf-form input {
-        width: 70% !important;
-    }
-    .kashf-page .grid {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .kashf-page .grid .child {
-        width: 100%;
-    }
-    .kashf-page .kashf-client-title {
-        position: absolute !important;
-        border-radius: 20px !important;
-        left: 85px !important;
-    }
-    .step-back {
-        left: 5px !important;
-        top: 120px !important;
-    }
-    .kashf-page .control-con {
-        margin-top: 70px !important;
-    }
+  .new-user-mess {
+    position: static !important;
+    display: block;
+    width: 100% !important;
+    transform: none !important;
+  }
+  .right-part {
+    width: calc(100% - 30px) !important;
+    left: 15px;
+  }
+  .total-cash,
+  .total-received-cash,
+  .left-part::before,
+  .left-part::after {
+    display: none !important;
+  }
+  .main-page .grid {
+    grid-template-columns: 1fr !important;
+    margin-bottom: 75px;
+  }
+  .main-page tr.notfound td {
+    left: 71px !important;
+    font-size: 12px !important;
+    padding: 0 !important;
+  }
+  .search-bar {
+    top: 70px !important;
+    z-index: -5;
+  }
+  .invoises-page .page-content,
+  .clients-page .page-content {
+    top: 140px;
+    height: calc(100% - 150px);
+    z-index: -5;
+  }
+  .heighlight-heading {
+    position: fixed !important;
+    left: 75px !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 20px;
+    padding: 5px 50px !important;
+    margin-top: 0px !important;
+  }
+  .table-loading {
+    margin-top: 0 !important;
+  }
+  .table tbody tr td:last-child i,
+  .table tbody tr td:last-child img {
+    margin: 8px;
+  }
+  .invoise-form {
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .invoise-form .form {
+    width: 570px !important;
+  }
+  .invoises-page {
+    z-index: 1;
+  }
+  .drop-menu {
+    flex-direction: column !important;
+  }
+  .kashf-form {
+    width: 100% !important;
+  }
+  .kashf-form::before {
+    display: none;
+  }
+  .kashf-form input {
+    width: 70% !important;
+  }
+  .kashf-page .grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .kashf-page .grid .child {
+    width: 100%;
+  }
+  .kashf-page .kashf-client-title {
+    position: absolute !important;
+    border-radius: 20px !important;
+    left: 85px !important;
+  }
+  .step-back {
+    left: 5px !important;
+    top: 120px !important;
+  }
+  .kashf-page .control-con {
+    margin-top: 70px !important;
+  }
 }
 @media (max-width: 991px) {
-    .dashboard .heading-content p {
-        width: 180px;
-        margin-left: 15px;
-    }
-    .login-page .from-container {
-        width: 100% !important;
-        border-radius: 0 !important;
-        height: 100%;
-        flex-direction: column;
-        justify-content: unset;
-    }
-    .login-page .from-container .logo-img {
-        animation-play-state: paused;
-        width: 150px;
-        margin-top: 50px;
-        margin-bottom: 15px;
-    }
-    .login-page .from-container::before {
-        display: none !important;
-    }
+  .dashboard .heading-content p {
+    width: 180px;
+    margin-left: 15px;
+  }
+  .login-page .from-container {
+    width: 100% !important;
+    border-radius: 0 !important;
+    height: 100%;
+    flex-direction: column;
+    justify-content: unset;
+  }
+  .login-page .from-container .logo-img {
+    animation-play-state: paused;
+    width: 150px;
+    margin-top: 50px;
+    margin-bottom: 15px;
+  }
+  .login-page .from-container::before {
+    display: none !important;
+  }
 
-    .main-page .grid .sec .table .notfound td {
-        font-size: 13px;
-        left: 80px;
-    }
+  .main-page .grid .sec .table .notfound td {
+    font-size: 13px;
+    left: 80px;
+  }
 }
 @media (min-width: 767px) and (max-width: 991px) {
-    .invoises-page .heighlight-heading {
-        left: 78px !important;
-        padding: 10px 50px !important;
-        top: 25px !important;
-        border-bottom-left-radius: 0 !important;
-        border-top-right-radius: 20px;
-    }
-    .total-cash,
-    .total-received-cash {
-        display: none !important;
-    }
+  .invoises-page .heighlight-heading {
+    left: 78px !important;
+    padding: 10px 50px !important;
+    top: 25px !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 20px;
+  }
+  .total-cash,
+  .total-received-cash {
+    display: none !important;
+  }
 }
 /* Medium */
 @media (max-width: 1199px) {
-    .page-title {
-        position: absolute !important;
-        margin-top: 10px !important;
-        top: 10px !important;
-        width: fit-content;
-        right: 50px !important;
-        z-index: -1;
-    }
-    .show-more {
-        position: absolute;
-        right: 10px;
-    }
-    .main-page {
-        margin-top: 20px;
-    }
-    .dashboard .right-part {
-        z-index: 100;
-    }
-    .dashboard .show-r-part {
-        position: unset !important;
-        width: fit-content;
-        margin-top: 22px;
-        z-index: 5;
-    }
-    .dashboard .over-layout,
-    .dashboard .right-part span,
-    .dashboard .show-r-part {
-        display: block !important;
-    }
-    .dashboard .right-bg {
-        display: none;
-    }
-    .main-page .grid .user-total-cash h2 {
-        font-size: 23px;
-    }
-    .main-page .grid .user-total-cash span {
-        font-size: 20px;
-    }
-    .left-part {
-        max-width: calc(100% - 30px) !important;
-        margin-right: 15px !important;
-    }
-    .left-part::before {
-        content: "";
-        position: absolute;
-        background-color: #fc91b5;
-        width: 115px;
-        height: 641px;
-        top: -37px;
-        left: -59px;
-        transform: rotate(11deg);
-    }
-    .left-part::after {
-        content: "";
-        position: absolute;
-        background-color: #fc91b588;
-        width: 115px;
-        height: 641px;
-        top: -37px;
-        left: -11px;
-        transform: rotate(11deg);
-        z-index: -1;
-    }
-    .page-content {
-        width: calc(100% - 30px) !important;
-        left: 15px !important;
-    }
-    .search-bar,
-    .new-user-mess {
-        transform: translate(50%, 0);
-    }
-    .drop-menu p {
-        font-size: 23px !important;
-        min-width: 275px !important;
-        height: 180px !important;
-    }
-    .kashf-page {
-        margin-top: -45px;
-        width: calc(100% - 20px);
-        margin-right: 20px;
-    }
-    .kashf-page .page-title {
-        right: 20px !important;
-    }
-    .kashf-form {
-        padding: 50px !important;
-        width: 700px;
-        left: 50%;
-    }
-    .kashf-drop-menu {
-        top: 230px !important;
-    }
-    .kashf-page .control-con {
-        margin-top: 50px;
-    }
+  .page-title {
+    position: absolute !important;
+    margin-top: 10px !important;
+    top: 10px !important;
+    width: fit-content;
+    right: 50px !important;
+    z-index: -1;
+  }
+  .show-more {
+    position: absolute;
+    right: 10px;
+  }
+  .main-page {
+    margin-top: 20px;
+  }
+  .dashboard .right-part {
+    z-index: 100;
+  }
+  .dashboard .show-r-part {
+    position: unset !important;
+    width: fit-content;
+    margin-top: 22px;
+    z-index: 5;
+  }
+  .dashboard .over-layout,
+  .dashboard .right-part span,
+  .dashboard .show-r-part {
+    display: block !important;
+  }
+  .dashboard .right-bg {
+    display: none;
+  }
+  .main-page .grid .user-total-cash h2 {
+    font-size: 23px;
+  }
+  .main-page .grid .user-total-cash span {
+    font-size: 20px;
+  }
+  .left-part {
+    max-width: calc(100% - 30px) !important;
+    margin-right: 15px !important;
+  }
+  .left-part::before {
+    content: "";
+    position: absolute;
+    background-color: #fc91b5;
+    width: 115px;
+    height: 641px;
+    top: -37px;
+    left: -59px;
+    transform: rotate(11deg);
+  }
+  .left-part::after {
+    content: "";
+    position: absolute;
+    background-color: #fc91b588;
+    width: 115px;
+    height: 641px;
+    top: -37px;
+    left: -11px;
+    transform: rotate(11deg);
+    z-index: -1;
+  }
+  .page-content {
+    width: calc(100% - 30px) !important;
+    left: 15px !important;
+  }
+  .search-bar,
+  .new-user-mess {
+    transform: translate(50%, 0);
+  }
+  .drop-menu p {
+    font-size: 23px !important;
+    min-width: 275px !important;
+    height: 180px !important;
+  }
+  .kashf-page {
+    margin-top: -45px;
+    width: calc(100% - 20px);
+    margin-right: 20px;
+  }
+  .kashf-page .page-title {
+    right: 20px !important;
+  }
+  .kashf-form {
+    padding: 50px !important;
+    width: 700px;
+    left: 50%;
+  }
+  .kashf-drop-menu {
+    top: 230px !important;
+  }
+  .kashf-page .control-con {
+    margin-top: 50px;
+  }
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
-    .invoises-page .heighlight-heading {
-        left: 38% !important;
-    }
+  .invoises-page .heighlight-heading {
+    left: 38% !important;
+  }
 }

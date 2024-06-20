@@ -123,6 +123,7 @@ class InvoisesView(generics.ListCreateAPIView):
         uv_ckb = data['uv_ckb']
         uv_count = data.get('uv_count')
         taksir_ckb = data['taksir_ckb']
+        taksir_type = data.get('taksir')
         taksir_count = data.get('taksir_count')
         forma = data['forma']
         forma_ckb = data['forma_ckb']
@@ -218,8 +219,11 @@ class InvoisesView(generics.ListCreateAPIView):
             fatora_cash += (int(slofan_count) * float(salariesModel.slofan_sal))
         if uv_ckb:
             fatora_cash += (float(uv_count) * float(salariesModel.UV_sal))
-        if taksir_ckb:  
-            fatora_cash += (float(taksir_count) * float(salariesModel.taksir_sal))      
+        if taksir_ckb:
+            if taksir_type == "كامل":
+                fatora_cash += (float(taksir_count) * float(salariesModel.taksir_full_sal))      
+            elif taksir_type == "نصف تكسيره": 
+                fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))      
         if forma_ckb:
             fatora_cash += float(forma)
         if spot_ckb:
@@ -258,12 +262,14 @@ class InvoisesView(generics.ListCreateAPIView):
             kohley_sal = salariesModel.kohley_sal,
             special_sal = salariesModel.special_sal,
             slofan_sal = salariesModel.slofan_sal,
-            taksir_sal = salariesModel.taksir_sal,
+            taksir_full_sal = salariesModel.taksir_full_sal,
+            taksir_half_sal = salariesModel.taksir_half_sal,
             UV_sal = salariesModel.UV_sal,
             film_sal = salariesModel.film_sal,
             zenk_sal = salariesModel.zenk_sal,
             owner = self.request.user,
-            invoise = serializer.validated_data.get("name"),
+            invoise_name = serializer.validated_data.get("name"),
+            invoise = Invoise,
         )
 
         serializer.validated_data['total_cash'] = fatora_cash + color_cash
@@ -330,6 +336,7 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             uv_ckb = data['uv_ckb']
             uv_count = data.get('uv_count')
             taksir_ckb = data['taksir_ckb']
+            taksir_type = data.get('taksir')
             taksir_count = data.get('taksir_count')
             forma = data['forma']
             forma_ckb = data['forma_ckb']
@@ -425,8 +432,11 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
                 fatora_cash += (int(slofan_count) * float(salariesModel.slofan_sal))
             if uv_ckb:
                 fatora_cash += (float(uv_count) * float(salariesModel.UV_sal))
-            if taksir_ckb:  
-                fatora_cash += (float(taksir_count) * float(salariesModel.taksir_sal))      
+            if taksir_ckb:
+                if taksir_type == "كامل":
+                    fatora_cash += (float(taksir_count) * float(salariesModel.taksir_full_sal))      
+                elif taksir_type == "نصف تكسيره": 
+                    fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))     
             if forma_ckb:
                 fatora_cash += float(forma)
             if spot_ckb:
@@ -545,12 +555,12 @@ class ReceivedCashView(generics.ListCreateAPIView):
             data = serializer.validated_data
             client = Client.objects.get(name=data.get('client'))
             invoises = Invoise.objects.filter(client=data.get('client'))
-            additionals = Additional.objects.filter(client.data.get('client'))
+            additionals = Additional.objects.filter(client=data.get('client'))
             # auto cashing logic
             client.totalCash -= Decimal(data.get('received_value'))
             client.receivedCash += Decimal(data.get('received_value'))
             inputVal = data.get('received_value')
-            if data.push_to == 'الفواتير':
+            if data.get("push_to") == 'الفواتير':
                 for x in invoises:
                     if inputVal:
                         if inputVal > x.remaining_cash:
@@ -566,7 +576,7 @@ class ReceivedCashView(generics.ListCreateAPIView):
                             x.done = True
                     x.save()
                     
-            elif data.push_to == 'الاضافات':
+            elif data.get("push_to") == 'الاضافات':
                 for x in additionals:
                     if inputVal:
                         if inputVal > x.remaining_cash:
@@ -602,19 +612,6 @@ class ReceivedCashByIdView(generics.ListAPIView):
     def get_queryset(self):
         cashId = self.kwargs.get("pk")
         return ReceivedCash.objects.filter(id=cashId)
-    
-class ReceivedCashDeleteView(generics.RetrieveDestroyAPIView):
-    serializer_class = ReceivedCashSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return ReceivedCash.objects.all()
-            
-    def perform_destroy(self, instance):
-        client = instance.client
-        client.totalCash += Decimal(instance.received_value)
-        client.save()
-        instance.delete()
     
 # Additional Views
 class AdditionalsView(generics.ListCreateAPIView):
