@@ -15,7 +15,8 @@ const SalariesForm = (props) => {
   const [kohley_sal, setKohley_sal] = useState("");
   const [special_sal, setSpecial_sal] = useState("");
   const [slofan_sal, setSlofan_sal] = useState("");
-  const [taksir_sal, setTaksir_sal] = useState("");
+  const [taksir_full_sal, setTaksir_full_sal] = useState("");
+  const [taksir_half_sal, setTaksir_half_sal] = useState("");
   const [UV_sal, setUV_sal] = useState("");
   const [film_sal, setFilm_sal] = useState("");
   const [zenk_sal, setZenk_sal] = useState("");
