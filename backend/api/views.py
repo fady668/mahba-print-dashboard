@@ -63,33 +63,33 @@ class InvoisesView(generics.ListCreateAPIView):
         salariesModel = Salaries.objects.get(id=1)
         data = serializer.validated_data
         # Name counter
-        invoiseModel = Invoise.objects.all()
-        currentName = data.get('name')
-        name_lst = []
-        same_name_lst = []
-        newName = ''
+        # invoiseModel = Invoise.objects.all()
+        # currentName = data.get('name')
+        # name_lst = []
+        # same_name_lst = []
+        # newName = ''
 
-        for x in invoiseModel:
-            name_lst.append(x.name)
+        # for x in invoiseModel:
+        #     name_lst.append(x.name)
 
-        for n in name_lst:
-            if (n.startswith(currentName)) :
-                same_name_lst.append(n)
-        else:
-            newName = currentName
+        # for n in name_lst:
+        #     if (n.startswith(currentName)) :
+        #         same_name_lst.append(n)
+        # else:
+        #     newName = currentName
             
-        if same_name_lst :
-            n = same_name_lst[-1]
-            if '(' in n:
-                        n_p1 = n[:n.find('(')]
-                        n_p2 = n[n.find('('):]
-                        name_num = int(str(n_p2[1:]).strip(')'))
+        # if same_name_lst :
+        #     n = same_name_lst[-1]
+        #     if '(' in n:
+        #                 n_p1 = n[:n.find('(')]
+        #                 n_p2 = n[n.find('('):]
+        #                 name_num = int(str(n_p2[1:]).strip(')'))
 
-                        newName = currentName + f' ({name_num + 1})'
-            else:    
-                newName = currentName + ' (2)'
+        #                 newName = currentName + f' ({name_num + 1})'
+        #     else:    
+        #         newName = currentName + ' (2)'
 
-        serializer.validated_data['name'] = newName
+        # serializer.validated_data['name'] = newName
         # Vars
         paper_taraf = data['paper_taraf']
         paper_count = data.get('paper_count')
@@ -129,6 +129,7 @@ class InvoisesView(generics.ListCreateAPIView):
         forma_ckb = data['forma_ckb']
         spot = data['spot']
         spot_ckb = data['spot_ckb']
+        film = data.get('film')
         film_ckb = data['film_ckb']
         aklasheh_ckb = data['aklasheh_ckb']
         aklasheh_sal = data.get('aklasheh_sal')
@@ -224,12 +225,14 @@ class InvoisesView(generics.ListCreateAPIView):
                 fatora_cash += (float(taksir_count) * float(salariesModel.taksir_full_sal))      
             elif taksir_type == "نصف تكسيره": 
                 fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))      
+            elif taksir_type == 'ريجه': 
+                fatora_cash += (float(taksir_count)) * float(salariesModel.taksir_rega_sal)
         if forma_ckb:
             fatora_cash += float(forma)
         if spot_ckb:
             fatora_cash += float(spot)
         if film_ckb:
-            fatora_cash += float(salariesModel.film_sal)
+            fatora_cash += (float(salariesModel.film_sal) * float(film))
         if aklasheh_ckb:
             fatora_cash += float(aklasheh_sal)
         if basma_ckb:
@@ -268,8 +271,7 @@ class InvoisesView(generics.ListCreateAPIView):
             film_sal = salariesModel.film_sal,
             zenk_sal = salariesModel.zenk_sal,
             owner = self.request.user,
-            invoise_name = serializer.validated_data.get("name"),
-            invoise = Invoise,
+            invoise = serializer.validated_data.get("name"),
         )
 
         serializer.validated_data['total_cash'] = fatora_cash + color_cash
@@ -437,6 +439,9 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
                     fatora_cash += (float(taksir_count) * float(salariesModel.taksir_full_sal))      
                 elif taksir_type == "نصف تكسيره": 
                     fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))     
+                elif taksir_type == 'ريجه': 
+                    fatora_cash += (float(taksir_count)) * float(salariesModel.taksir_rega_sal)
+
             if forma_ckb:
                 fatora_cash += float(forma)
             if spot_ckb:
@@ -481,9 +486,11 @@ class InvoisesDeleteView(generics.DestroyAPIView):
         client = instance.client
         client.totalCash -= Decimal(instance.total_cash)
         invoises = Invoise.objects.filter(client=client)
+        invoisesalaries = InvoiseSalaries.objects.get(invoise=instance.name)
         if invoises :
             client.totalCash = 0
         client.save()
+        invoisesalaries.delete()
         instance.delete()
     
 # Salaries Views

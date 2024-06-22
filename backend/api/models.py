@@ -71,7 +71,7 @@ class Invoise(models.Model):
     #     "برستول كوشيه" : ['230gm 70%', '250gm 70%', '300gm 70%', '250gm جاير', '300gm جاير', '350gm 70%']
     # }
 
-    name = models.CharField(max_length=100, verbose_name="اسم الفاتورة")
+    name = models.CharField(max_length=100, verbose_name="اسم الفاتورة", unique=True)
     date = models.DateField(verbose_name="التاريخ")
     done = models.BooleanField(default=False)
     # Paper
@@ -164,6 +164,24 @@ class Invoise(models.Model):
     def __str__(self):
         return self.name
     
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Check if the instance is being created (not updated)
+            original_name = self.name
+            counter = 1
+            while Invoise.objects.filter(name=self.name).exists():
+                self.name = f"{original_name}({counter})"
+                counter += 1
+        super().save(*args, **kwargs)
+    
+    def generate_unique_name(self, name):
+        original_name = name
+        counter = 1
+        while Invoise.objects.filter(name=name).exists():
+            name = f"{original_name}({counter})"
+            counter += 1
+        return name
+
+    
 
 class Salaries(models.Model):
     k_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
@@ -179,6 +197,7 @@ class Salaries(models.Model):
     slofan_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     taksir_full_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     taksir_half_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
+    taksir_rega_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     UV_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     film_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     zenk_sal = models.DecimalField(max_digits=15, decimal_places=1, blank=False, default=Decimal(0.00))
@@ -203,8 +222,7 @@ class InvoiseSalaries(models.Model):
     film_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))
     zenk_sal = models.DecimalField(max_digits=15, decimal_places=1, blank=False, default=Decimal(0.00))
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    invoise_name = models.CharField(max_length=50)
-    invoise = models.ForeignKey(Invoise, on_delete=models.CASCADE, blank=False)
+    invoise = models.CharField(max_length=50)
 
 class ReceivedCash(models.Model):
     PUSH_WAY_CHOICES = [

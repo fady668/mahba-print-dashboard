@@ -289,7 +289,7 @@
     grid-template-columns: repeat(2, 170px);
     width: -moz-fit-content;
     width: fit-content;
-    row-gap: 13px;
+    row-gap: 10px;
 }
 .form-invoise-con {
     display: flex;

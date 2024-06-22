@@ -14,6 +14,7 @@ const Invoises = () => {
     const [clientInvoises, setClientInvoises] = useState([]);
     const [isPending, setIsPending] = useState(false);
     const [invoiseSals, setInvoiseSals] = useState([]);
+    const [sals, setSals] = useState([]);
     const [deletedInvoiseSalsId, setDeletedInvoiseSalsId] = useState("");
     const [search, setSearch] = useState("");
     const [dropDownOne, setDropDownOne] = useState(true);
@@ -25,6 +26,7 @@ const Invoises = () => {
     useEffect(() => {
         getClient();
         getInvoisesSals();
+        getSals();
         getClientInvoises();
         setClientTotalCash(client["totalCash"]);
     }, []);
@@ -44,6 +46,12 @@ const Invoises = () => {
         const res = await api.get("api/invoisesalaries/");
         const data = await res.data;
         setInvoiseSals(data);
+    };
+    const getSals = async () => {
+        const res = await api.get("api/salaries/");
+        const data = await res.data;
+        console.log(data);
+        setSals(data);
     };
 
     const invoiseClicked = (invoise) => {
@@ -139,7 +147,7 @@ const Invoises = () => {
                     className="add-btn">
                     اضافة فاتوره جديده
                 </div>
-                {showInvoiseForm && (
+                {showInvoiseForm && sals.length() === 0 ? (
                     <>
                         <span className="over-layout"></span>
                         <div className="invoise-form focused">
@@ -153,6 +161,11 @@ const Invoises = () => {
                             />
                         </div>
                     </>
+                ) : (
+                    swal({
+                        title: "يجب وضع الاسعار قبل اضافه الفواتير !",
+                        icon: "warining",
+                    })
                 )}
                 {showEditInvoiseForm && (
                     <>
