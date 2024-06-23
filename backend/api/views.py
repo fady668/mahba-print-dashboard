@@ -589,6 +589,14 @@ class InvoiseSalariesByNameView(generics.RetrieveUpdateDestroyAPIView):
         else :
             print(serializer.errors)
 
+class InvoiseSalariesDeleteView(generics.DestroyAPIView):
+    serializer_class = InvoiseSalariesSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        salsId = self.kwargs.get("pk")
+        return InvoiseSalaries.objects.filter(id=salsId)
+
 # Received Cash Views
 class ReceivedCashView(generics.ListCreateAPIView):
     serializer_class = ReceivedCashSerializer
@@ -623,7 +631,7 @@ class ReceivedCashView(generics.ListCreateAPIView):
                             x.done = True
                     x.save()
                     
-            elif data.get("push_to") == 'الاضافات':
+            if data.get("push_to") == 'الاضافات':
                 for x in additionals:
                     if inputVal:
                         if inputVal > x.remaining_cash:
@@ -675,6 +683,7 @@ class AdditionalsView(generics.ListCreateAPIView):
             sal = float(serializer.validated_data['salary_of_one'])
             total = count * sal
             serializer.validated_data['total'] = total
+            serializer.validated_data['remaining_cash'] = total
             client.totalCash += Decimal(total)
             client.save()
             serializer.save(owner=self.request.user)

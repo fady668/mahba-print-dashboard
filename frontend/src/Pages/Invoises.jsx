@@ -22,6 +22,7 @@ const Invoises = () => {
   const [showInvoiseForm, setShowInvoiseForm] = useState(false);
   const [showEditInvoiseForm, setShowEditInvoiseForm] = useState(false);
   const [updatedInvoise, setUpdatedInvoise] = useState({});
+  const [invoisesTotalMoney, setInvoisesTotalMoney] = useState(parseFloat(0));
 
   useEffect(() => {
     getClient();
@@ -49,6 +50,13 @@ const Invoises = () => {
     const data = await res.data;
     setIsPending(false);
     setClientInvoises(data);
+    let total = parseFloat(0);
+    if (data.length != 0) {
+      for (let x = 0; x < data.length; x++) {
+        total += parseFloat(data[x].total_cash);
+      }
+      setInvoisesTotalMoney(total);
+    }
   };
   const getInvoisesSals = async () => {
     const res = await api.get("api/invoisesalaries/");
@@ -58,7 +66,6 @@ const Invoises = () => {
   const getSals = async () => {
     const res = await api.get("api/salaries/");
     const data = await res.data;
-    console.log(data);
     setSals(data);
   };
   const showSalsMess = async () => {
@@ -120,7 +127,6 @@ const Invoises = () => {
       sal.invoise === invoise.name ? setDeletedInvoiseSalsId(sal.id) : "";
     });
     api.delete(`/api/invoises/delete/${invoise.id}`);
-    api.delete(`/api/invoisesalaries/${deletedInvoiseSalsId}`);
     window.location.reload();
   };
 
@@ -206,7 +212,7 @@ const Invoises = () => {
         <span className="heighlight-heading"> {client.name} </span>
         <div className="total-cash not-border">
           <span>اجمالي حساب العميل</span>
-          <span className="heighlight-text">{client.totalCash}</span>
+          <span className="heighlight-text">{invoisesTotalMoney}</span>
         </div>
         <table className="table">
           <thead>

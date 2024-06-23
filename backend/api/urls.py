@@ -14,6 +14,7 @@ urlpatterns = [
     path('salaries/<int:pk>', view=SalariesUpdateDeleteView.as_view(), name='update-salaries'),
     path("invoisesalaries/", view=InvoiseSalariesView.as_view(), name="Invoise-Salaries-View"),
     path("invoisesalaries/<int:pk>", view=InvoiseSalariesByNameView.as_view(), name="Invoise-Salaries-by-name-View"),
+    path("invoisesalaries/delete/<int:pk>", view=InvoiseSalariesDeleteView.as_view(), name="Invoise-Salaries-Delete-View"),
     path('receivedcash/', view=ReceivedCashView.as_view(), name='Received-Cash-list'),
     path('receivedcash/byclientid/<int:cl>', view=ReceivedCashByClientNameView.as_view(), name='Received-Cash-by-client-id-list'),
     path('receivedcash/byid/<int:pk>', view=ReceivedCashByIdView.as_view(), name='Received-Cash-by-id-list'),

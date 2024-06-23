@@ -622,6 +622,9 @@ i.eye {
 .taglid-head-labels label:nth-child(4) {
   left: 50px;
 }
+.invoise-form select.form-input[name="taksir"] {
+  width: 117px;
+}
 .borderd.padding {
   padding: 5px 10px;
   border-radius: 10px;
