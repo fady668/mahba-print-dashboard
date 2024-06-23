@@ -62,7 +62,7 @@ class InvoisesView(generics.ListCreateAPIView):
         ClientModel = Client.objects.get(name=serializer.validated_data['client'])
         salariesModel = Salaries.objects.get(id=1)
         data = serializer.validated_data
-        # Name counter
+        # # Name counter
         # invoiseModel = Invoise.objects.all()
         # currentName = data.get('name')
         # name_lst = []
@@ -72,11 +72,17 @@ class InvoisesView(generics.ListCreateAPIView):
         # for x in invoiseModel:
         #     name_lst.append(x.name)
 
+        # print(name_lst)
+        # print("------------------------------")
+
         # for n in name_lst:
         #     if (n.startswith(currentName)) :
         #         same_name_lst.append(n)
         # else:
         #     newName = currentName
+
+        # print(same_name_lst)
+        # print("---------------------------------")
             
         # if same_name_lst :
         #     n = same_name_lst[-1]
@@ -89,7 +95,45 @@ class InvoisesView(generics.ListCreateAPIView):
         #     else:    
         #         newName = currentName + ' (2)'
 
-        # serializer.validated_data['name'] = newName
+        # Name counter
+        invoiseModel = Invoise.objects.all()
+        currentName = data.get('name')
+        name_lst = []
+        same_name_lst = []
+        newName = ''
+
+        for x in invoiseModel:
+            name_lst.append(x.name)
+
+        print(name_lst)
+        print("------------------------------")
+
+        for n in name_lst:
+            if (n.startswith(currentName) and " " not in n[len(currentName):]) :
+                same_name_lst.append(n)
+                
+                # if n.strip() == currentName:
+                #     same_name_lst.append(n)
+                # elif n.strip() == currentName and :
+                #     same_name_lst.append(n)
+        else:
+            newName = currentName
+
+        print(same_name_lst)
+        print("---------------------------------")
+            
+        if same_name_lst :
+            n = same_name_lst[-1]
+            if '(' in n:
+                        n_p1 = n[:n.find('(')]
+                        n_p2 = n[n.find('('):]
+                        name_num = int(str(n_p2[1:]).strip(')'))
+
+                        newName = currentName + f'({name_num + 1})'
+            else:    
+                newName = currentName + '(2)'
+
+        serializer.validated_data['name'] = newName
         # Vars
         paper_taraf = data['paper_taraf']
         paper_count = data.get('paper_count')
@@ -267,10 +311,12 @@ class InvoisesView(generics.ListCreateAPIView):
             slofan_sal = salariesModel.slofan_sal,
             taksir_full_sal = salariesModel.taksir_full_sal,
             taksir_half_sal = salariesModel.taksir_half_sal,
+            taksir_rega_sal = salariesModel.taksir_rega_sal,
             UV_sal = salariesModel.UV_sal,
             film_sal = salariesModel.film_sal,
             zenk_sal = salariesModel.zenk_sal,
             owner = self.request.user,
+            client = serializer.validated_data.get("client"),
             invoise = serializer.validated_data.get("name"),
         )
 
@@ -305,6 +351,40 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             salariesModel = InvoiseSalaries.objects.get(invoise=data.get("name"))
             # Subtract the invoise cash from the Client cash
             ClientModel.totalCash -= Decimal(InvoisesModel.total_cash)
+            # Name counter
+            invoiseModel = Invoise.objects.all()
+            currentName = data.get('name')
+            name_lst = []
+            same_name_lst = []
+            newName = ''
+
+            for x in invoiseModel:
+                name_lst.append(x.name)
+
+            print(name_lst)
+            print("------------------------------")
+
+            for n in name_lst:
+                if (n.startswith(currentName) and " " not in n[len(currentName):]) :
+                    same_name_lst.append(n)
+            else:
+                newName = currentName
+
+            print(same_name_lst)
+            print("---------------------------------")
+                
+            if same_name_lst :
+                n = same_name_lst[-1]
+                if '(' in n:
+                            n_p1 = n[:n.find('(')]
+                            n_p2 = n[n.find('('):]
+                            name_num = int(str(n_p2[1:]).strip(')'))
+
+                            newName = currentName + f'({name_num + 1})'
+                else:    
+                    newName = currentName + '(2)'
+
+            serializer.validated_data['name'] = newName
             # Vars
             paper_taraf = data['paper_taraf']
             paper_count = data.get('paper_count')
