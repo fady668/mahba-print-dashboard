@@ -163,25 +163,6 @@ class Invoise(models.Model):
 
     def __str__(self):
         return self.name
-    
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:  # Check if the instance is being created (not updated)
-    #         original_name = self.name
-    #         counter = 1
-    #         while Invoise.objects.filter(name=self.name).exists():
-    #             self.name = f"{original_name}({counter})"
-    #             counter += 1
-    #     super().save(*args, **kwargs)
-    
-    # def generate_unique_name(self, name):
-    #     original_name = name
-    #     counter = 1
-    #     while Invoise.objects.filter(name=name).exists():
-    #         name = f"{original_name}({counter})"
-    #         counter += 1
-    #     return name
-
-    
 
 class Salaries(models.Model):
     k_sal = models.DecimalField(max_digits=15, decimal_places=2, blank=False, default=Decimal(0.00))

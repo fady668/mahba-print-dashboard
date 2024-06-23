@@ -62,39 +62,7 @@ class InvoisesView(generics.ListCreateAPIView):
         ClientModel = Client.objects.get(name=serializer.validated_data['client'])
         salariesModel = Salaries.objects.get(id=1)
         data = serializer.validated_data
-        # # Name counter
-        # invoiseModel = Invoise.objects.all()
-        # currentName = data.get('name')
-        # name_lst = []
-        # same_name_lst = []
-        # newName = ''
-
-        # for x in invoiseModel:
-        #     name_lst.append(x.name)
-
-        # print(name_lst)
-        # print("------------------------------")
-
-        # for n in name_lst:
-        #     if (n.startswith(currentName)) :
-        #         same_name_lst.append(n)
-        # else:
-        #     newName = currentName
-
-        # print(same_name_lst)
-        # print("---------------------------------")
-            
-        # if same_name_lst :
-        #     n = same_name_lst[-1]
-        #     if '(' in n:
-        #                 n_p1 = n[:n.find('(')]
-        #                 n_p2 = n[n.find('('):]
-        #                 name_num = int(str(n_p2[1:]).strip(')'))
-
-        #                 newName = currentName + f' ({name_num + 1})'
-        #     else:    
-        #         newName = currentName + ' (2)'
-
+        
         # Name counter
         invoiseModel = Invoise.objects.all()
         currentName = data.get('name')
@@ -105,23 +73,13 @@ class InvoisesView(generics.ListCreateAPIView):
         for x in invoiseModel:
             name_lst.append(x.name)
 
-        print(name_lst)
-        print("------------------------------")
-
         for n in name_lst:
             if (n.startswith(currentName) and " " not in n[len(currentName):]) :
                 same_name_lst.append(n)
                 
-                # if n.strip() == currentName:
-                #     same_name_lst.append(n)
-                # elif n.strip() == currentName and :
-                #     same_name_lst.append(n)
         else:
             newName = currentName
 
-        print(same_name_lst)
-        print("---------------------------------")
-            
         if same_name_lst :
             n = same_name_lst[-1]
             if '(' in n:
@@ -134,6 +92,7 @@ class InvoisesView(generics.ListCreateAPIView):
                 newName = currentName + '(2)'
 
         serializer.validated_data['name'] = newName
+        
         # Vars
         paper_taraf = data['paper_taraf']
         paper_count = data.get('paper_count')
@@ -353,25 +312,25 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             ClientModel.totalCash -= Decimal(InvoisesModel.total_cash)
             # Name counter
             invoiseModel = Invoise.objects.all()
+            # invoise = Invoise.objects.get(id=serializer.validated_data.get('id'))
+            # print(invoise)
             currentName = data.get('name')
             name_lst = []
             same_name_lst = []
             newName = ''
 
+            # if currentName != invoise.name :
             for x in invoiseModel:
                 name_lst.append(x.name)
-
-            print(name_lst)
-            print("------------------------------")
+                
+            if currentName in name_lst :
+                name_lst.remove(currentName)
 
             for n in name_lst:
                 if (n.startswith(currentName) and " " not in n[len(currentName):]) :
                     same_name_lst.append(n)
             else:
                 newName = currentName
-
-            print(same_name_lst)
-            print("---------------------------------")
                 
             if same_name_lst :
                 n = same_name_lst[-1]
@@ -383,8 +342,9 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
                             newName = currentName + f'({name_num + 1})'
                 else:    
                     newName = currentName + '(2)'
-
+            
             serializer.validated_data['name'] = newName
+                
             # Vars
             paper_taraf = data['paper_taraf']
             paper_count = data.get('paper_count')
