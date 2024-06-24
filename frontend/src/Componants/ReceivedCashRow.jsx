@@ -6,7 +6,7 @@ const ReceivedCashRow = (props) => {
     return (
         <>
             <td></td>
-            <td>{cash.received_value}</td>
+            <td>{parseFloat(cash.received_value)}</td>
             <td>{date}</td>
             <td>{cash.push_to}</td>
             <td>{cash.push_way}</td>
