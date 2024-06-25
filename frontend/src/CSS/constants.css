@@ -346,6 +346,11 @@ form div.inner-con label {
     margin: 0 5px;
     background-color: #b1b1b145;
 }
+.form-input.right {
+    position: absolute;
+    right: 85px;
+    width: 100px !important;
+}
 .fit {
     width: 130px;
 }

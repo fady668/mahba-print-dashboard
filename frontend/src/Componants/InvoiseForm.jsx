@@ -847,7 +847,7 @@ const InvoiseForm = (props) => {
                 name="slofan_ckb"
               />
               <select
-                className="form-input"
+                className="form-input right"
                 name="slofan"
                 value={slofan}
                 onChange={(e) => setSlofan(e.target.value)}
@@ -891,7 +891,7 @@ const InvoiseForm = (props) => {
                 name="uv"
               />
               <input
-                className="form-input"
+                className="form-input right"
                 name="uv"
                 value={uv}
                 onChange={(e) => setUv(e.target.value)}
@@ -918,7 +918,7 @@ const InvoiseForm = (props) => {
                 name="taksir_ckb"
               />
               <select
-                className="form-input"
+                className="form-input right"
                 name="taksir"
                 value={taksir}
                 onChange={(e) => setTaksir(e.target.value)}
@@ -966,7 +966,7 @@ const InvoiseForm = (props) => {
                 name="spot_ckb"
               />
               <input
-                className="form-input"
+                className="form-input right"
                 type="text"
                 name="spot"
                 value={spot}
@@ -1000,7 +1000,7 @@ const InvoiseForm = (props) => {
                 name="aklasheh_ckb"
               />
               <select
-                className="form-input"
+                className="form-input right"
                 name="aklasheh"
                 value={aklasheh}
                 onChange={(e) => setAklasheh(e.target.value)}
@@ -1048,7 +1048,7 @@ const InvoiseForm = (props) => {
                 name="taglid_ckb"
               />
               <select
-                className="form-input"
+                className="form-input right"
                 name="taglid"
                 value={taglid}
                 onChange={(e) => setTaglid(e.target.value)}
@@ -1093,7 +1093,7 @@ const InvoiseForm = (props) => {
                 name="tawdib_ckb"
               />
               <input
-                className="form-input"
+                className="form-input right"
                 type="text"
                 name="tawdib"
                 value={tawdib}
@@ -1143,7 +1143,7 @@ const InvoiseForm = (props) => {
                 name="nakl_ckb"
               />
               <input
-                className="form-input"
+                className="form-input right"
                 type="text"
                 name="nakl"
                 value={nakl}
