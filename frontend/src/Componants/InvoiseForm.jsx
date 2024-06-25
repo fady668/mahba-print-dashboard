@@ -350,6 +350,37 @@ const InvoiseForm = (props) => {
     });
   };
 
+  const hiddenDateInput = useRef(null);
+
+  const handleVisibleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  const handleHiddenDateChange = (e) => {
+    const inputDate = e.target.value;
+    setDate(formatToDisplayDate(inputDate));
+  };
+
+  const handleVisibleDateClick = () => {
+    hiddenDateInput.current.showPicker();
+  };
+
+  const formatToDisplayDate = (inputDate) => {
+    if (!inputDate) return "";
+    const [year, month, day] = inputDate.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
+  const formatToInputDate = (displayDate) => {
+    if (!displayDate) return "";
+    const dateParts = displayDate.split("/");
+    if (dateParts.length === 3) {
+      const [day, month, year] = dateParts;
+      return `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year}/`;
+    }
+    return "";
+  };
+
   return (
     <>
       <form className="form" onSubmit={() => postInvoise()}>
@@ -368,11 +399,20 @@ const InvoiseForm = (props) => {
           <div className="inner-con">
             <label>التاريخ</label>
             <input
-              type="date"
+              type="text"
               className="form-input fit"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
-              name="date"
+              onChange={handleVisibleDateChange}
+              onClick={handleVisibleDateClick}
+              placeholder="dd/mm/yyyy"
+            />
+            <input
+              type="date"
+              ref={hiddenDateInput}
+              className="form-input fit"
+              style={{ display: "none" }}
+              value={formatToInputDate(date)}
+              onChange={handleHiddenDateChange}
             />
           </div>
         </div>
