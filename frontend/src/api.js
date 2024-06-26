@@ -3,32 +3,32 @@ import { ACCESS_TOKEN } from "./Constants";
 import { Navigate } from "react-router-dom";
 
 const api = axios.create({
-    baseURL: "http://127.0.0.1:8000/",
+  baseURL: "https://mahbaprint.site/",
 });
 
 api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem(ACCESS_TOKEN);
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
+  (config) => {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 api.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        if (error.response && error.response.status === 403) {
-            alert("يجب ان تسجل الدخول من جديد...");
-            window.location.href = "/login";
-        }
-        return Promise.reject(error); // Pass the error along
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 403) {
+      alert("يجب ان تسجل الدخول من جديد...");
+      window.location.href = "/login";
     }
+    return Promise.reject(error); // Pass the error along
+  }
 );
 
 export default api;
