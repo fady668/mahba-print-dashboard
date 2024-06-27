@@ -38,6 +38,7 @@ function Form({ route, method }) {
                     title: "يوجد خطأ في اسم المستخدم او رمز الدخول !",
                     icon: "error",
                 });
+                console.log(error.response);
             }
         } finally {
             setLoading(false);

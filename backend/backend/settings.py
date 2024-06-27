@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-4ru!niz9*ye(j06xg3xua!e8l(+gd)e^e%nd@63+d35%@-5t%2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['backend.mahbaprint.site', 'localhost', '127.0.0.1']
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -147,5 +147,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWS_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://mahbaprint.site",
+    "http://localhost:3000",
+]
+CSRF_TRUSTED_ORIGINS = ['https://backend.mahbaprint.site']
+
+

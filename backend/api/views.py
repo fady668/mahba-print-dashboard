@@ -384,6 +384,7 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             forma_ckb = data['forma_ckb']
             spot = data['spot']
             spot_ckb = data['spot_ckb']
+            film = data.get('film')
             film_ckb = data['film_ckb']
             aklasheh_ckb = data['aklasheh_ckb']
             aklasheh_sal = data.get('aklasheh_sal')
@@ -478,16 +479,15 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
                 if taksir_type == "كامل":
                     fatora_cash += (float(taksir_count) * float(salariesModel.taksir_full_sal))      
                 elif taksir_type == "نصف تكسيره": 
-                    fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))     
+                    fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))      
                 elif taksir_type == 'ريجه': 
                     fatora_cash += (float(taksir_count)) * float(salariesModel.taksir_rega_sal)
-
             if forma_ckb:
                 fatora_cash += float(forma)
             if spot_ckb:
                 fatora_cash += float(spot)
             if film_ckb:
-                fatora_cash += float(salariesModel.film_sal)
+                fatora_cash += (float(salariesModel.film_sal) * float(film))
             if aklasheh_ckb:
                 fatora_cash += float(aklasheh_sal)
             if basma_ckb:
