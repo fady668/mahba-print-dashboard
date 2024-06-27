@@ -205,7 +205,8 @@ class InvoiseSalaries(models.Model):
     zenk_sal = models.DecimalField(max_digits=15, decimal_places=1, blank=False, default=Decimal(0.00))
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     client =models.ForeignKey(Client, on_delete=models.CASCADE)
-    invoise = models.CharField(max_length=50)
+    invoise_name = models.CharField(max_length=50)
+    invoise = models.ForeignKey(Invoise, on_delete=models.CASCADE)
 
 class ReceivedCash(models.Model):
     PUSH_WAY_CHOICES = [

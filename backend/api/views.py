@@ -31,7 +31,6 @@ class ClientView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(owner=self.request.user)
-            print(self.request.user)
         else:
             print(serializer.errors)
 
@@ -254,7 +253,15 @@ class InvoisesView(generics.ListCreateAPIView):
             fatora_cash += float(khadamat)
         if nakl_ckb:
             fatora_cash += float(nakl)
-            
+        
+        total = fatora_cash + color_cash
+
+        serializer.validated_data['total_cash'] = total
+        serializer.validated_data['remaining_cash'] = total
+        ClientModel.totalCash += Decimal(total)
+        ClientModel.save()
+        invoise = serializer.save(owner=self.request.user)
+
         # Create the invoise sals
         InvoiseSalaries.objects.create(
             k_sal = salariesModel.k_sal,
@@ -276,14 +283,10 @@ class InvoisesView(generics.ListCreateAPIView):
             zenk_sal = salariesModel.zenk_sal,
             owner = self.request.user,
             client = serializer.validated_data.get("client"),
-            invoise = serializer.validated_data.get("name"),
+            invoise_name = serializer.validated_data.get("name"),
+            invoise = invoise,
         )
 
-        serializer.validated_data['total_cash'] = fatora_cash + color_cash
-        serializer.validated_data['remaining_cash'] = fatora_cash + color_cash
-        ClientModel.totalCash += Decimal(fatora_cash + color_cash)
-        ClientModel.save()
-        serializer.save(owner=self.request.user)
       else:
           print(serializer.errors)
 
@@ -300,27 +303,26 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Invoise.objects.filter(owner=self.request.user)
+        id = self.kwargs.get("pk")
+        return Invoise.objects.filter(owner=self.request.user, id=id)
     
     def perform_update(self, serializer):
         if serializer.is_valid():
             ClientModel = Client.objects.get(name=serializer.validated_data['client'])
             data = serializer.validated_data
-            InvoisesModel = Invoise.objects.get(name=data.get("name"))
-            salariesModel = InvoiseSalaries.objects.get(invoise=data.get("name"))
+            InvoiseModel = Invoise.objects.get(id=self.kwargs.get("pk"))
+            salariesModel = InvoiseSalaries.objects.get(invoise=self.kwargs.get("pk"))
             # Subtract the invoise cash from the Client cash
-            ClientModel.totalCash -= Decimal(InvoisesModel.total_cash)
+            ClientModel.totalCash -= Decimal(InvoiseModel.total_cash)
             # Name counter
-            invoiseModel = Invoise.objects.all()
-            # invoise = Invoise.objects.get(id=serializer.validated_data.get('id'))
-            # print(invoise)
+            invoisesModel = Invoise.objects.all()
             currentName = data.get('name')
             name_lst = []
             same_name_lst = []
             newName = ''
 
             # if currentName != invoise.name :
-            for x in invoiseModel:
+            for x in invoisesModel:
                 name_lst.append(x.name)
                 
             if currentName in name_lst :
@@ -384,6 +386,7 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             forma_ckb = data['forma_ckb']
             spot = data['spot']
             spot_ckb = data['spot_ckb']
+            film = data.get('film')
             film_ckb = data['film_ckb']
             aklasheh_ckb = data['aklasheh_ckb']
             aklasheh_sal = data.get('aklasheh_sal')
@@ -478,16 +481,15 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
                 if taksir_type == "كامل":
                     fatora_cash += (float(taksir_count) * float(salariesModel.taksir_full_sal))      
                 elif taksir_type == "نصف تكسيره": 
-                    fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))     
+                    fatora_cash += (float(taksir_count) * float(salariesModel.taksir_half_sal))      
                 elif taksir_type == 'ريجه': 
                     fatora_cash += (float(taksir_count)) * float(salariesModel.taksir_rega_sal)
-
             if forma_ckb:
                 fatora_cash += float(forma)
             if spot_ckb:
                 fatora_cash += float(spot)
             if film_ckb:
-                fatora_cash += float(salariesModel.film_sal)
+                fatora_cash += (float(salariesModel.film_sal) * float(film))
             if aklasheh_ckb:
                 fatora_cash += float(aklasheh_sal)
             if basma_ckb:
@@ -507,9 +509,11 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             if nakl_ckb:
                 fatora_cash += float(nakl)
 
-            serializer.validated_data['total_cash'] = fatora_cash + color_cash
-            serializer.validated_data['remaining_cash'] = fatora_cash + color_cash
-            ClientModel.totalCash += Decimal(fatora_cash)
+            total = fatora_cash + color_cash
+
+            serializer.validated_data['total_cash'] = total
+            serializer.validated_data['remaining_cash'] = total
+            ClientModel.totalCash += Decimal(total)
             ClientModel.save()
             serializer.save(owner=self.request.user)
         else:
@@ -526,7 +530,7 @@ class InvoisesDeleteView(generics.DestroyAPIView):
         client = instance.client
         client.totalCash -= Decimal(instance.total_cash)
         invoises = Invoise.objects.filter(client=client)
-        invoisesalaries = InvoiseSalaries.objects.get(invoise=instance.name)
+        invoisesalaries = InvoiseSalaries.objects.get(invoise=instance.id)
         if invoises :
             client.totalCash = 0
         client.save()

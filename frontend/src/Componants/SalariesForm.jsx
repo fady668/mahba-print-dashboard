@@ -32,7 +32,6 @@ const SalariesForm = (props) => {
     setSals(data);
     if (props.type !== "show") {
       if (data.length !== 0) {
-        console.log(data[0].taksir_full_sal);
         setK_sal(data[0].k_sal);
         setY_sal(data[0].y_sal);
         setM_sal(data[0].m_sal);

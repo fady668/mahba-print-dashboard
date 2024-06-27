@@ -327,7 +327,9 @@ const InvoiseForm = (props) => {
       UV_sal: sals["UV_sal"],
       film_sal: sals["film_sal"],
       zenk_sal: sals["zenk_sal"],
-      invoise: name,
+      invoise_name: name,
+      client: client,
+      invoise: invoise,
     };
 
     if (method === "add") {
@@ -346,7 +348,7 @@ const InvoiseForm = (props) => {
   const salsClicked = () => {
     setShowSals(true);
     invoiseSals.filter((sal) => {
-      sal.invoise === name ? setUpdatedInvoiseSals(sal.id) : "";
+      sal.invoise_name === name ? setUpdatedInvoiseSals(sal.id) : "";
     });
   };
 

@@ -3,7 +3,7 @@ import { ACCESS_TOKEN } from "./Constants";
 import { Navigate } from "react-router-dom";
 
 const api = axios.create({
-  baseURL: "https://mahbaprint.site/backend/",
+  baseURL: "https://backend.mahbaprint.site/",
 });
 
 api.interceptors.request.use(
