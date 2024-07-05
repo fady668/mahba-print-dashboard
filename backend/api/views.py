@@ -515,6 +515,7 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             ClientModel.totalCash += Decimal(total)
             ClientModel.save()
             serializer.save(owner=self.request.user)
+            
         else:
             print(serializer.errors)
 
@@ -527,14 +528,13 @@ class InvoisesDeleteView(generics.DestroyAPIView):
     
     def perform_destroy(self, instance):
         client = instance.client
-        client.totalCash -= Decimal(instance.total_cash)
-        invoises = Invoise.objects.filter(client=client)
+        invoiseModel = Invoise.objects.filter(owner=self.request.user, client=client)
         invoisesalaries = InvoiseSalaries.objects.get(invoise=instance.id)
-        if invoises :
-            client.totalCash = 0
+        client.totalCash -= instance.total_cash
         client.save()
         invoisesalaries.delete()
         instance.delete()
+        
     
 # Salaries Views
 class SalariesView(generics.ListCreateAPIView):
@@ -719,6 +719,8 @@ class AdditionalsUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     def perform_update(self, serializer):
         if serializer.is_valid():
             client = Client.objects.get(name=serializer.validated_data['client'])
+            currentAdd = Additional.objects.get(id=self.kwargs.get('pk'))
+            client.totalCash -= Decimal(currentAdd.total)
             count = float(serializer.validated_data['count'])
             sal = float(serializer.validated_data['salary_of_one'])
             total = count * sal
