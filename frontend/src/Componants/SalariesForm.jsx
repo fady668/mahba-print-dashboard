@@ -94,7 +94,7 @@ const SalariesForm = (props) => {
         UV_sal,
         film_sal,
         zenk_sal,
-        invoise: props.invoiseName,
+        invoise_name: props.invoiseName,
       };
     } else {
       salsForm = {

@@ -205,7 +205,7 @@ const Main = () => {
                   return (
                     <tr key={client.id}>
                       <td>{client.name}</td>
-                      <td>{phone}</td>
+                      <td>{client.phone !== "" ? client.phone : "----"}</td>
                     </tr>
                   );
                 })

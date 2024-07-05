@@ -61,9 +61,9 @@ class InvoisesView(generics.ListCreateAPIView):
         ClientModel = Client.objects.get(name=serializer.validated_data['client'])
         salariesModel = Salaries.objects.get(id=1)
         data = serializer.validated_data
-        
+    
         # Name counter
-        invoiseModel = Invoise.objects.all()
+        invoiseModel = Invoise.objects.filter(owner=self.request.user, client=serializer.validated_data['client'])
         currentName = data.get('name')
         name_lst = []
         same_name_lst = []
@@ -315,14 +315,13 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             # Subtract the invoise cash from the Client cash
             ClientModel.totalCash -= Decimal(InvoiseModel.total_cash)
             # Name counter
-            invoisesModel = Invoise.objects.all()
+            invoiseModel = Invoise.objects.filter(owner=self.request.user, client=serializer.validated_data['client'])
             currentName = data.get('name')
             name_lst = []
             same_name_lst = []
             newName = ''
 
-            # if currentName != invoise.name :
-            for x in invoisesModel:
+            for x in invoiseModel:
                 name_lst.append(x.name)
                 
             if currentName in name_lst :
@@ -510,7 +509,7 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
                 fatora_cash += float(nakl)
 
             total = fatora_cash + color_cash
-
+    
             serializer.validated_data['total_cash'] = total
             serializer.validated_data['remaining_cash'] = total
             ClientModel.totalCash += Decimal(total)
@@ -587,7 +586,7 @@ class InvoiseSalariesByNameView(generics.RetrieveUpdateDestroyAPIView):
         salsId = self.kwargs.get("pk")
         return InvoiseSalaries.objects.filter(id=salsId)
 
-    def perform_create(self, serializer):
+    def perform_update(self, serializer):
         if serializer.is_valid():
             serializer.save(owner=self.request.user)
         else :
