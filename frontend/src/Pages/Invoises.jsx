@@ -53,7 +53,7 @@ const Invoises = () => {
     let total = parseFloat(0);
     if (data.length != 0) {
       for (let x = 0; x < data.length; x++) {
-        total += parseFloat(data[x].total_cash);
+        total += parseFloat(data[x].remaining_cash);
       }
       setInvoisesTotalMoney(total);
     }

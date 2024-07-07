@@ -120,13 +120,17 @@ const SalariesForm = (props) => {
 
     if (props.type !== "show") {
       if (sals.length !== 0) {
-        await api.patch(`${route}/${sals[0].id}`, salsForm);
+        await api.patch(`api/salaries/1`, salsForm);
       } else {
         await api.post(route, salsForm);
       }
     } else {
       await api.patch(route, salsForm);
     }
+    swal({
+      title: "تم تسجيل الاسعار بنجاح",
+      icon: "success",
+    });
   };
 
   return (

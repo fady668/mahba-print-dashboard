@@ -559,7 +559,7 @@ class SalariesUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     
     def perform_update(self, serializer):
         if serializer.is_valid():
-            serializers.save(owner=self.request.user)
+            serializer.save(owner=self.request.user)
         else :
             print(serializer.errors)
 
