@@ -78,7 +78,13 @@ const Kashf = () => {
     <div className="kashf-page">
       <h1 className="page-title">كشف حساب</h1>
       {showClientForm && (
-        <form onSubmit={() => formSubmit()} className="kashf-form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log("Form submitted with:", select);
+          }}
+          className="kashf-form"
+        >
           <i className="fa-regular fa-user"></i>
           <label className="kashf-form-label">اختر العميل</label>
           <input
@@ -95,7 +101,6 @@ const Kashf = () => {
                 .filter((client) => {
                   const value = select.toLowerCase();
                   const c = client.name.toLowerCase();
-
                   return value && c.startsWith(value) && c;
                 })
                 .map((client) => (

@@ -123,12 +123,16 @@ const Invoises = () => {
     };
 
     const deleteInvoise = (invoise) => {
-        invoiseSals.filter((sal) => {
-            sal.invoise === invoise.name ? setDeletedInvoiseSalsId(sal.id) : "";
-        });
-        api.delete(`/api/invoises/delete/${invoise.id}`);
-        window.location.reload();
+    invoiseSals.forEach((sal) => {
+        if (sal.invoise === invoise.name) {
+        setDeletedInvoiseSalsId(sal.id);
+        }
+    });
+
+    api.delete(`/api/invoises/delete/${invoise.id}`);
+    window.location.reload();
     };
+
 
     return (
         <div className="invoises-page">

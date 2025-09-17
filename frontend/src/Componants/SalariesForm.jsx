@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import swal from "sweetalert";
 import api from "../api";
 
 const SalariesForm = (props) => {

@@ -326,10 +326,13 @@ const InvoiseForm = (props) => {
 
   const salsClicked = () => {
     setShowSals(true);
-    invoiseSals.filter((sal) => {
-      sal.invoise_name === name ? setUpdatedInvoiseSals(sal.id) : "";
+    invoiseSals.forEach((sal) => {
+      if (sal.invoise_name === name) {
+        setUpdatedInvoiseSals(sal.id);
+      }
     });
   };
+
 
   const hiddenDateInput = useRef(null);
 
