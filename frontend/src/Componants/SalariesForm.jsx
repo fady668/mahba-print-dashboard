@@ -122,7 +122,7 @@ const SalariesForm = (props) => {
 
     if (props.type !== "show") {
       if (sals.length !== 0) {
-        await api.patch(`api/salaries/1`, salsForm);
+        await api.patch(`api/salaries/${sals[0].id}/`, salsForm);
       } else {
         await api.post(route, salsForm);
       }
