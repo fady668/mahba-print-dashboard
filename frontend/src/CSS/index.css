@@ -602,6 +602,9 @@ i.eye {
 .invoise-form input[name="counting"] {
     width: 100px;
 }
+.sahba_input{
+    width:100px !important;
+}
 .taglid-head-labels {
     width: 100%;
     justify-content: space-around !important;

@@ -29,7 +29,7 @@ const SalariesForm = (props) => {
 
   const getSals = async () => {
     const res = await api.get(route);
-    const data = await res.data;
+    const data = res.data;
     setSals(data);
     if (props.type !== "show") {
       if (data.length !== 0) {
@@ -74,7 +74,8 @@ const SalariesForm = (props) => {
     }
   };
 
-  const postSals = async () => {
+  const postSals = async (e) => {
+    e.preventDefault();
     let salsForm = {};
     if (props.type === "show") {
       salsForm = {

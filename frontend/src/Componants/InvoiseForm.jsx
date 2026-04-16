@@ -121,8 +121,8 @@ const InvoiseForm = (props) => {
       setZenk_taraf(invoise.zenk_taraf);
       setZenk_count_before(invoise.zenk_count);
       setZenk_sal(invoise.zenk_sal);
-      setPrint_count_one(invoise.print_count_one);
-      setPrint_count_two(invoise.print_count_two);
+      setPrint_count_one(Number(invoise.print_count_one));
+      setPrint_count_two(Number(invoise.print_count_two));
       setPrint_douple_face(invoise.print_douple_face);
       setColor_k(invoise.color_k);
       setColor_y(invoise.color_y);
@@ -151,10 +151,10 @@ const InvoiseForm = (props) => {
       setSlofan(invoise.slofan);
       setSlofan_ckb(invoise.slofan_ckb);
       setSlofan_geha(invoise.slofan_geha);
-      setSlofan_count(invoise.slofan_count);
+      setSlofan_count(Number(invoise.slofan_count));
       setUv(invoise.uv);
       setUv_ckb(invoise.uv_ckb);
-      setUv_count(invoise.uv_count);
+      setUv_count(Number(invoise.uv_count));
       setTaksir(invoise.taksir);
       setTaksir_ckb(invoise.taksir_ckb);
       setTaksir_count(invoise.taksir_count);
@@ -611,14 +611,14 @@ const InvoiseForm = (props) => {
           <div className="inner-con">
             <label>عدد السحبات</label>
             <input
-              className="form-input"
+              className="form-input sahba_input"
               type="text"
               value={print_count_one}
               onChange={(e) => setPrint_count_one(e.target.value)}
               name="print_count_one"
             />
             <input
-              className="form-input"
+              className="form-input sahba_input"
               type="text"
               value={print_count_two}
               onChange={(e) => setPrint_count_two(e.target.value)}
