@@ -317,34 +317,33 @@ class InvoisesUpdateView(generics.RetrieveUpdateAPIView):
             # Name counter
             invoiseModel = Invoise.objects.filter(owner=self.request.user, client=serializer.validated_data['client'])
             currentName = data.get('name')
-            name_lst = []
-            same_name_lst = []
-            newName = ''
 
-            for x in invoiseModel:
-                name_lst.append(x.name)
-                
-            if currentName in name_lst :
-                name_lst.remove(currentName)
+            if currentName != InvoiseModel.name:
+                name_lst = []
+                same_name_lst = []
+                newName = ''
+                for x in invoiseModel:
+                    name_lst.append(x.name)
 
-            for n in name_lst:
-                if (n.startswith(currentName) and " " not in n[len(currentName):]) :
-                    same_name_lst.append(n)
-            else:
-                newName = currentName
-                
-            if same_name_lst :
-                n = same_name_lst[-1]
-                if '(' in n:
-                            n_p1 = n[:n.find('(')]
-                            n_p2 = n[n.find('('):]
-                            name_num = int(str(n_p2[1:]).strip(')'))
+                if currentName in name_lst :
+                    name_lst.remove(currentName)
+                for n in name_lst:
+                    if (n.startswith(currentName) and " " not in n[len(currentName):]) :
+                        same_name_lst.append(n)
+                else:
+                    newName = currentName
 
-                            newName = currentName + f'({name_num + 1})'
-                else:    
-                    newName = currentName + '(2)'
-            
-            serializer.validated_data['name'] = newName
+                if same_name_lst :
+                    n = same_name_lst[-1]
+                    if '(' in n:
+                        n_p1 = n[:n.find('(')]
+                        n_p2 = n[n.find('('):]
+                        name_num = int(str(n_p2[1:]).strip(')'))
+                        newName = currentName + f'({name_num + 1})'
+                    else:    
+                        newName = currentName + '(2)'
+
+                serializer.validated_data['name'] = newName
                 
             # Vars
             paper_taraf = data['paper_taraf']
@@ -530,8 +529,9 @@ class InvoisesDeleteView(generics.DestroyAPIView):
         client = instance.client
         invoiseModel = Invoise.objects.filter(owner=self.request.user, client=client)
         invoisesalaries = InvoiseSalaries.objects.get(invoise=instance.id)
-        client.totalCash -= instance.total_cash
-        client.save()
+        if not instance.done:
+            client.totalCash -= instance.total_cash
+            client.save()
         invoisesalaries.delete()
         instance.delete()
         
