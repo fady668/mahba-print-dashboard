@@ -103,8 +103,8 @@ const InvoiseForm = (props) => {
   const [currentSlofanGeha, setCurrentSlofanGeha] = useState("");
 
   useEffect(() => {
-    getZenkSal();
     if (method === "add") {
+      getZenkSal();
       setDate(pushedDate);
     }
     if (method === "edit") {
